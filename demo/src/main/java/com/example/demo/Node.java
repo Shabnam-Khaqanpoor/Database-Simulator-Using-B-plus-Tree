@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Node<E> {
+public class Node <E> implements Comparable{
     private Node LeftParent ;
     private Node RightParent ;
     private Node LeftChild ;
@@ -62,5 +62,10 @@ public class Node<E> {
     }
     public void setRightParent(Node rightParent) {
         RightParent = rightParent;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
