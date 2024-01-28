@@ -3,47 +3,60 @@ package com.example.demo;
 import java.util.ArrayList;
 import java.util.List;
 
-class Node {
-    int order;
-    List<String> values;
-    List<List<String>> keys;
-    Node nextKey;
-    Node parent;
-    boolean checkLeaf;
-
-    public Node(int order) {
-        this.order = order;
-        this.values = new ArrayList<>();
-        this.keys = new ArrayList<>();
-        this.nextKey = null;
-        this.parent = null;
-        this.checkLeaf = false;
-    }
-
-    // Insert at the leaf
-    public void insertAtLeaf(Node leaf, String value, String key) {
-        if (!this.values.isEmpty()) {
-            List<String> temp1 = this.values;
-            for (int i = 0; i < temp1.size(); i++) {
-                if (value.equals(temp1.get(i))) {
-                    this.keys.get(i).add(key);
-                    break;
-                } else if (value.compareTo(temp1.get(i)) < 0) {
-                    this.values.add(i, value);
-                    this.keys.add(i, new ArrayList<>(List.of(key)));
-                    break;
-                } else if (i + 1 == temp1.size()) {
-                    this.values.add(value);
-                    this.keys.add(new ArrayList<>(List.of(key)));
-                    break;
-                }
-            }
-        } else {
-            this.values.add(value);
-            this.keys.add(new ArrayList<>(List.of(key)));
-        }
-    }
+//class Node {
+//    int order;
+//    List<String> values;
+//    List<List<String>> keys;
+//    Node nextKey;
+//    Node parent;
+//    boolean checkLeaf;
+//
+//    public Node(int order) {
+//        this.order = order;
+//        this.values = new ArrayList<>();
+//        this.keys = new ArrayList<>();
+//        this.nextKey = null;
+//        this.parent = null;
+//        this.checkLeaf = false;
+//    }
+//
+//    // Insert at the leaf
+//    public void insertAtLeaf(Node leaf, String value, String key) {
+//        if (!this.values.isEmpty()) {
+//            List<String> temp1 = this.values;
+//            for (int i = 0; i < temp1.size(); i++) {
+//                if (value.equals(temp1.get(i))) {
+//                    this.keys.get(i).add(key);
+//                    break;
+//                } else if (value.compareTo(temp1.get(i)) < 0) {
+//                    this.values.add(i, value);
+//                    this.keys.add(i, new ArrayList<>(List.of(key)));
+//                    break;
+//                } else if (i + 1 == temp1.size()) {
+//                    this.values.add(value);
+//                    this.keys.add(new ArrayList<>(List.of(key)));
+//                    break;
+//                }
+//            }
+//        } else {
+//            this.values.add(value);
+//            this.keys.add(new ArrayList<>(List.of(key)));
+//        }
+//    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class BplusTree {
     Node root;
