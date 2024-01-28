@@ -12,10 +12,14 @@ public class Node <E> implements Comparable{
     private Node RightChild ;
     private Node LeftBody ;
     private Node RightBody ;
+    private boolean isLeaf ;
     Map data ;
     private E key ;
     public Node () {
         data = new HashMap<>() ;
+        isLeaf = true ;
+        this.LeftChild = new Node <String>() ;
+        this.RightChild = new Node <String>() ;
     }
     public E getKey() {
         return key;
@@ -24,6 +28,12 @@ public class Node <E> implements Comparable{
         this.key = key;
     }
 
+    public boolean isLeaf() {
+        return isLeaf;
+    }
+    public void setLeaf(boolean leaf) {
+        isLeaf = leaf;
+    }
 
     public Node getLeftChild() {
         return LeftChild;
