@@ -6,20 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 public class Node <E> implements Comparable{
-    private Node LeftParent ;
-    private Node RightParent ;
-    private Node LeftChild ;
-    private Node RightChild ;
-    private Node LeftBody ;
-    private Node RightBody ;
+    private Node <E> LeftParent ;
+    private Node <E> RightParent ;
+    private Node <E> LeftChild ;
+    private Node <E> RightChild ;
+    private Node <E> LeftBody ;
+    private Node <E> RightBody ;
     private boolean isLeaf ;
     Map data ;
     private E key ;
     public Node () {
         data = new HashMap<>() ;
         isLeaf = true ;
-        this.LeftChild = new Node <String>() ;
-        this.RightChild = new Node <String>() ;
+        this.LeftChild = new Node <>() ;
+        this.RightChild = new Node <>() ;
     }
     public E getKey() {
         return key;

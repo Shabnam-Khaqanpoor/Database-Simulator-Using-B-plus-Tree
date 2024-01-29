@@ -6,7 +6,11 @@ public class Tree <E>{
 
     }
     public Node <E> search (E key) {
-        return null ;
+        if (root != null) {
+            return searchFrom(root, key);
+        } else {
+            return null ;
+        }
     }
     public Node <E> searchFrom (Node <E> head , E key) {
         if (key.equals(head.getKey())) {
@@ -29,5 +33,4 @@ public class Tree <E>{
             return root ;
         }
     }
-
 }
