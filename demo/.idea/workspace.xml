@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d613f47a-e76f-4ad2-8b50-dc87131e5b20" name="Changes" comment="start project.">
+    <list default="true" id="1ae46c3e-d93d-41e9-ac1e-990585526d9a" name="Changes" comment="start project.">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/free-exit-icon-2860-thumb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/images.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/BPlusTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/DatabaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo/database-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/database-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,87 +40,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-<<<<<<< HEAD
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-=======
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
->>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "last_opened_file_path": "D:/data/btree-shabnam/demo/src/main/resources/com/example/demo",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
-<<<<<<< HEAD
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-=======
+}]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\data structures\btree-shabnam\demo\src\main\resources\com\example\demo" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\data\btree-shabnam\demo\src\main\resources\com\example\demo" />
     </key>
->>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.demo.HelloApplication" />
+      <module name="demo" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="d613f47a-e76f-4ad2-8b50-dc87131e5b20" name="Changes" comment="" />
-      <created>1706420598820</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1706420598820</updated>
-      <workItem from="1706420600296" duration="45000" />
-      <workItem from="1706420720325" duration="36000" />
-      <workItem from="1706420957983" duration="24000" />
-      <workItem from="1706420989888" duration="31000" />
-      <workItem from="1706438651493" duration="45000" />
-      <workItem from="1706438757932" duration="106000" />
-      <workItem from="1706446048537" duration="461000" />
-      <workItem from="1706447509711" duration="782000" />
-<<<<<<< HEAD
-      <workItem from="1706451510702" duration="7604000" />
-      <workItem from="1706461204743" duration="2093000" />
-      <workItem from="1706467192529" duration="1786000" />
-      <workItem from="1706514730598" duration="1376000" />
-=======
-      <workItem from="1706456498509" duration="3553000" />
-      <workItem from="1706469835861" duration="1165000" />
->>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
-    </task>
-    <task id="LOCAL-00001" summary="start project.">
-      <created>1706438803766</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1706438803766</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -128,13 +73,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="start project." />
-    <option name="LAST_COMMIT_MESSAGE" value="start project." />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
