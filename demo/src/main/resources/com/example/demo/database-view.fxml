@@ -19,13 +19,10 @@
             <Font name="Sylfaen" size="36.0" />
          </font>
       </Text>
-<<<<<<< HEAD
+
       <TextField fx:id="fieldText" layoutX="1128.0" layoutY="135.0" prefHeight="50.0" prefWidth="200.0" />
-      <ImageView fx:id="search" fitHeight="90.0" fitWidth="90.0" layoutX="1038.0" layoutY="11.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
-=======
-      <TextField fx:id="fieldText" layoutX="1230.0" layoutY="172.0" prefHeight="50.0" prefWidth="276.0" />
-      <ImageView fx:id="search" fitHeight="80.0" fitWidth="88.0" layoutX="1143.0" layoutY="157.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
->>>>>>> e105a5286e943574c3df4cd6518a8481fdcf9d02
+      <ImageView fx:id="search"  fitHeight="90.0" fitWidth="90.0" layoutX="1038.0" layoutY="11.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
+
          <image>
             <Image url="@10700746.png" />
          </image>
@@ -35,30 +32,22 @@
             <Font size="18.0" />
          </font>
       </Text>
-<<<<<<< HEAD
+
       <ImageView fx:id="edite" fitHeight="70.0" fitWidth="70.0" layoutX="1058.0" layoutY="229.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
-=======
-      <ImageView fx:id="edite" fitHeight="50.0" fitWidth="57.0" layoutX="1336.0" layoutY="260.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
->>>>>>> e105a5286e943574c3df4cd6518a8481fdcf9d02
+
+
          <image>
             <Image url="@7660277.png" />
          </image>
       </ImageView>
-<<<<<<< HEAD
+
       <ImageView fx:id="delete" fitHeight="70.0" fitWidth="70.0" layoutX="1083.0" layoutY="348.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
-=======
-      <ImageView fx:id="delete" fitHeight="59.0" fitWidth="50.0" layoutX="1252.0" layoutY="260.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
->>>>>>> e105a5286e943574c3df4cd6518a8481fdcf9d02
          <image>
             <Image url="@5680113.png" />
          </image>
       </ImageView>
-<<<<<<< HEAD
       <ImageView fx:id="add" fitHeight="120.0" fitWidth="120.0" layoutX="1192.0" layoutY="2.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
-=======
-      <ImageView fx:id="add" fitHeight="91.0" fitWidth="80.0" layoutX="1407.0" layoutY="245.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
->>>>>>> e105a5286e943574c3df4cd6518a8481fdcf9d02
-         <image>
+  <image>
             <Image url="@11607162.png" />
          </image>
       </ImageView>

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.impelementation.BPTree;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -95,7 +96,7 @@ public class HelloController implements Initializable {
             pane.setVisible(false);
         } else {
             if (nameField.getText() != null) {
-                BPTree tree = new BPTree(4);
+                BPTree tree = new BPTree();
                 tables.add(tree);
                 showTree(tree);
                 pane.setVisible(false);
@@ -119,12 +120,13 @@ public class HelloController implements Initializable {
 //    initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tables.add(new BPTree(4));
-        tables.add(new BPTree(4));
-        tables.add(new BPTree(4));
+        tables.add(new BPTree());
+        tables.add(new BPTree());
+        tables.add(new BPTree());
         for (BPTree tree : tables) {
             showTree(tree);
         }
+        selectedTree = HelloController.getTree();
     }
 //    نمایش مربع های حاوی اطلاعات درخت در صفحه برای انتخاب
     public void showTree(BPTree tree) {
