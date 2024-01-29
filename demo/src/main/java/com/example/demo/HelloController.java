@@ -154,6 +154,25 @@ public class HelloController implements Initializable {
             nameField.setVisible(false);
             infoText.setText(text.getText()); ;
         });
+
+        imageView.setOnMouseEntered(event -> {
+            imageView.setScaleX(1.1);
+            imageView.setScaleY(1.1);
+            selectedTree = tree ;
+            paneImport.setVisible(true);
+            nameField.setVisible(false);
+            infoText.setText(text.getText()); ;
+        });
+
+
+        imageView.setOnMouseExited(event -> {
+            imageView.setScaleX(1);
+            imageView.setScaleY(1);
+            selectedTree = tree ;
+            paneImport.setVisible(true);
+            nameField.setVisible(false);
+            infoText.setText(text.getText()); ;
+        });
     }
     private static Tree selectedTree ;
 
