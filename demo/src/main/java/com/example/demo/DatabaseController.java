@@ -1,5 +1,9 @@
 package com.example.demo;
 
+import javafx.beans.InvalidationListener;
+import javafx.css.CssMetaData;
+import javafx.css.Styleable;
+import javafx.css.StyleableProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,18 +11,24 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.lang.annotation.ElementType;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
 public class DatabaseController {
+    @FXML
+    private AnchorPane pane;
     @FXML
     private Text databaseName;
     @FXML

@@ -22,6 +22,7 @@ public class HelloController implements Initializable {
     private ImageView add;
     @FXML
     private ImageView exit;
+//    add a table
     @FXML
     void addClicked(MouseEvent event) {
         paneImport.setVisible(true);
@@ -29,6 +30,7 @@ public class HelloController implements Initializable {
         infoText.setText("name of the table : ");
         selectedTree = null ;
     }
+//    just for show in the graphic
     @FXML
     void addEntered(MouseEvent event) {
         add.setScaleX(1.1);
