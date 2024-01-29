@@ -261,9 +261,10 @@ package com.example.demo;//<<<<<<< HEAD
 //>>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BPTree<K extends Comparable<K>, V> {
+class BPTree<K extends Comparable<K>, V> {
     private Node<K,V> root;
     private final int degree;
 
@@ -352,7 +353,9 @@ public class BPTree<K extends Comparable<K>, V> {
             return this;
         }
 
-
+        public Node <K , V> merge () {
+            return null ;
+        }
 
         @Override
         public List<V> rangeSearch(K startKey, K endKey) {

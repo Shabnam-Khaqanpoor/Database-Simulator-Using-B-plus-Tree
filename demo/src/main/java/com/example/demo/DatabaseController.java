@@ -14,16 +14,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.lang.annotation.ElementType;
-import java.util.ArrayList;
-import java.util.Objects;
+
+import java.util.List;
 
 
 public class DatabaseController {
@@ -32,7 +31,7 @@ public class DatabaseController {
     @FXML
     private Text databaseName;
     @FXML
-    private TableView<?> table;
+    private TableView<Record> table;
     @FXML
     private TableColumn<?, ?> id;
     @FXML
@@ -73,13 +72,13 @@ public class DatabaseController {
     Node selectedNode ;
 
     @FXML
-    void closeClicked(MouseEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
-        stage.setTitle("Databases");
-        stage.setScene(scene);
-        stage.show();
+    void closeClicked(MouseEvent event) /*throws IOException*/ {
+//        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+//        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        Scene scene = new Scene(parent);
+//        stage.setTitle("Databases");
+//        stage.setScene(scene);
+//        stage.show();
     }
     @FXML
     void closeEntered(MouseEvent event) {
@@ -93,9 +92,12 @@ public class DatabaseController {
     }
     @FXML
     void addClicked(MouseEvent event) {
-
+//        table.getItems().add(new Person("ali")) ;
+        table.getItems().add(new Record ());
+        System.out.println(table.getItems().size());
+//        table.getItems().
     }
-
+    List <Record> records ;
     @FXML
     void addEntered(MouseEvent event) {
         add.setScaleX(1.1);
@@ -203,4 +205,11 @@ public class DatabaseController {
     }
 
 
+}
+
+class Person {
+    public Person (String a) {
+        k = a;
+    }
+    String k;
 }

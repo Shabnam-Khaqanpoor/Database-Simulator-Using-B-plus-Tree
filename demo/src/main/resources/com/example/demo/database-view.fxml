@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController">
    <children>
-      <TableView fx:id="table" editable="true" layoutX="15.0" layoutY="75.0" prefHeight="700.0" prefWidth="1100.0">
+      <TableView fx:id="table" editable="true" layoutX="300.0" layoutY="75.0" prefHeight="700.0" prefWidth="1100.0">
          <columns>
             <TableColumn fx:id="id" prefWidth="100.0" text="ID" />
             <TableColumn fx:id="firstC" onEditCommit="#edit1" prefWidth="100.0" text="1" />

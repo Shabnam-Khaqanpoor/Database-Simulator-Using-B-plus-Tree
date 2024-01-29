@@ -95,7 +95,7 @@ public class HelloController implements Initializable {
             pane.setVisible(false);
         } else {
             if (nameField.getText() != null) {
-                Tree tree = new Tree<>();
+                BPTree tree = new BPTree(4);
                 tables.add(tree);
                 showTree(tree);
                 pane.setVisible(false);
@@ -119,15 +119,15 @@ public class HelloController implements Initializable {
 //    initialize
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tables.add(new Tree<>());
-        tables.add(new Tree<>());
-        tables.add(new Tree<>());
-        for (Tree tree : tables) {
+        tables.add(new BPTree(4));
+        tables.add(new BPTree(4));
+        tables.add(new BPTree(4));
+        for (BPTree tree : tables) {
             showTree(tree);
         }
     }
 //    نمایش مربع های حاوی اطلاعات درخت در صفحه برای انتخاب
-    public void showTree(Tree tree) {
+    public void showTree(BPTree tree) {
         Pane temp = new Pane();
         temp.setPrefWidth(80);
         temp.setPrefHeight(80);
@@ -155,11 +155,11 @@ public class HelloController implements Initializable {
             infoText.setText(text.getText()); ;
         });
     }
-    private static Tree selectedTree ;
+    private static BPTree selectedTree ;
 
-    public static Tree getSelectedTree() {
+    public static BPTree getSelectedTree() {
         return selectedTree;
     }
 
-    List <Tree> tables = new ArrayList<>() ;
+    List <BPTree> tables = new ArrayList<>() ;
 }
