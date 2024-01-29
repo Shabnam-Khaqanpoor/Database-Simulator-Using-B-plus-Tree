@@ -7,6 +7,7 @@ import javafx.css.StyleableProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,38 +23,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 
-public class DatabaseController {
+public class DatabaseController implements Initializable {
     @FXML
     private AnchorPane pane;
     @FXML
     private Text databaseName;
-    @FXML
-    private TableView<Record> table;
-    @FXML
-    private TableColumn<?, ?> id;
-    @FXML
-    private TableColumn<?, ?> firstC;
-    @FXML
-    private TableColumn<?, ?> secondC;
-    @FXML
-    private TableColumn<?, ?> thirdC;
-    @FXML
-    private TableColumn<?, ?> fourthC;
-    @FXML
-    private TableColumn<?, ?> fifthC;
-    @FXML
-    private TableColumn<?, ?> sixthC;
-    @FXML
-    private TableColumn<?, ?> seventhC;
-    @FXML
-    private TableColumn<?, ?> eighthC;
-    @FXML
-    private TableColumn<?, ?> ninthC;
-    @FXML
-    private TableColumn<?, ?> tenthC;
     @FXML
     private ImageView close;
     @FXML
@@ -92,10 +72,7 @@ public class DatabaseController {
     }
     @FXML
     void addClicked(MouseEvent event) {
-//        table.getItems().add(new Person("ali")) ;
-        table.getItems().add(new Record ());
-        System.out.println(table.getItems().size());
-//        table.getItems().
+
     }
     List <Record> records ;
     @FXML
@@ -157,59 +134,10 @@ public class DatabaseController {
         search.setScaleX(1);
         search.setScaleY(1);
     }
-    @FXML
-    void edit1(ActionEvent event) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        bpTree = HelloController.getTree() ;
 
     }
-    @FXML
-    void edit2(ActionEvent event) {
-
-    }
-    @FXML
-    void edit3(ActionEvent event) {
-
-    }
-
-    @FXML
-    void edit4(ActionEvent event) {
-
-    }
-
-    @FXML
-    void edit5(ActionEvent event) {
-
-    }
-
-    @FXML
-    void edit6(ActionEvent event) {
-
-    }
-
-    @FXML
-    void edit7(ActionEvent event) {
-
-    }
-
-    @FXML
-    void edit8(ActionEvent event) {
-
-    }
-
-    @FXML
-    void edit9(ActionEvent event) {
-
-    }
-    @FXML
-    void edit10(ActionEvent event) {
-
-    }
-
-
-}
-
-class Person {
-    public Person (String a) {
-        k = a;
-    }
-    String k;
+    BPTree bpTree ;
 }

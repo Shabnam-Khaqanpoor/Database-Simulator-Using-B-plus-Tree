@@ -162,4 +162,7 @@ public class HelloController implements Initializable {
     }
 
     List <BPTree> tables = new ArrayList<>() ;
+    public static BPTree getTree () {
+        return selectedTree ;
+    }
 }

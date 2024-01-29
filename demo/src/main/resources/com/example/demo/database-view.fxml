@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,22 +9,7 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController">
    <children>
-      <TableView fx:id="table" editable="true" layoutX="300.0" layoutY="75.0" prefHeight="700.0" prefWidth="1100.0">
-         <columns>
-            <TableColumn fx:id="id" prefWidth="100.0" text="ID" />
-            <TableColumn fx:id="firstC" onEditCommit="#edit1" prefWidth="100.0" text="1" />
-            <TableColumn fx:id="secondC" onEditCommit="#edit2" prefWidth="100.0" text="2" />
-            <TableColumn fx:id="thirdC" onEditCommit="#edit3" prefWidth="100.0" text="3" />
-            <TableColumn fx:id="fourthC" onEditCommit="#edit4" prefWidth="100.0" text="4" />
-            <TableColumn fx:id="fifthC" onEditCommit="#edit5" prefWidth="100.0" text="5" />
-            <TableColumn fx:id="sixthC" onEditCommit="#edit6" prefWidth="100.0" text="6" />
-            <TableColumn fx:id="seventhC" onEditCommit="#edit7" prefWidth="100.0" text="7" />
-            <TableColumn fx:id="eighthC" onEditCommit="#edit8" prefWidth="100.0" text="8" />
-            <TableColumn fx:id="ninthC" onEditCommit="#edit9" prefWidth="100.0" text="9" />
-            <TableColumn fx:id="tenthC" onEditCommit="#edit10" prefWidth="100.0" text="10" />
-         </columns>
-      </TableView>
-      <ImageView fx:id="close" fitHeight="80.0" fitWidth="80.0" layoutX="1447.0" layoutY="16.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="close" fitHeight="80.0" fitWidth="80.0" layoutX="1152.0" layoutY="209.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@8995515.png" />
          </image>
@@ -37,7 +20,7 @@
          </font>
       </Text>
       <TextField fx:id="fieldText" layoutX="1128.0" layoutY="135.0" prefHeight="50.0" prefWidth="200.0" />
-      <ImageView fx:id="search" fitHeight="90.0" fitWidth="90.0" layoutX="1128.0" layoutY="19.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="search" fitHeight="90.0" fitWidth="90.0" layoutX="1038.0" layoutY="11.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@10700746.png" />
          </image>
@@ -47,17 +30,17 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fx:id="edite" fitHeight="70.0" fitWidth="70.0" layoutX="1447.0" layoutY="267.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edite" fitHeight="70.0" fitWidth="70.0" layoutX="1058.0" layoutY="229.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@7660277.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="delete" fitHeight="70.0" fitWidth="70.0" layoutX="1447.0" layoutY="382.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="delete" fitHeight="70.0" fitWidth="70.0" layoutX="1083.0" layoutY="348.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@5680113.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="add" fitHeight="120.0" fitWidth="120.0" layoutX="1422.0" layoutY="119.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="add" fitHeight="120.0" fitWidth="120.0" layoutX="1192.0" layoutY="2.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@11607162.png" />
          </image>
