@@ -11,7 +11,14 @@ public class Pack implements Comparable {
     public void addValue (Object o) {
         values.add(o);
     }
-
+    @Override
+    public String toString() {
+        StringBuilder text = new StringBuilder();
+        for (int i = 0 ; i < values.size() ; i++) {
+            text.append(values.get(i));
+        }
+        return String.valueOf(text);
+    }
     @Override
     public int compareTo(Object o) {
         return 0;

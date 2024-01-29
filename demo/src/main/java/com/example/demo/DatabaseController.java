@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,7 +58,35 @@ public class DatabaseController implements Initializable {
 //عملکرد دکمه اضافه کردن (کامل نشده)
     @FXML
     void addClicked(MouseEvent event) {
-
+        Pane temp = new Pane() ;
+        temp.setPrefWidth(300);
+        temp.setPrefHeight(800);
+//        یه عکس بزار اسمشو تو جای مشخص شده بزار ترجیحا مستطیل 8*3 باشه
+        ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("").toString())) ;
+        imageView.setFitWidth(300);
+        imageView.setFitHeight(800);
+        temp.getChildren().add(imageView) ;
+//        بجای 5 باید تعداد ستون ها قرار بگیرد
+        for (int i = 0 ; i < 5 ; i++) {
+            TextField textField = new TextField() ;
+            temp.getChildren().add(textField) ;
+            textField.setLayoutX(200);
+            textField.setLayoutY(50 * i + 50);
+            Text text = new Text("the name of colum") ;
+            temp.getChildren().add(text) ;
+            text.setLayoutX(10);
+            text.setLayoutY(60 * i + 50);
+        }
+        Button button = new Button("send") ;
+        temp.getChildren().add(button) ;
+        button.setLayoutX(50);
+        button.setLayoutY(700);
+        pane.getChildren().add(temp) ;
+        temp.setLayoutX(500);
+        temp.setLayoutY(200);
+        button.setOnMouseClicked(event1 -> {
+//            خواااااااابم میاد
+        });
     }
 
     @FXML
@@ -71,7 +100,7 @@ public class DatabaseController implements Initializable {
         add.setScaleX(1);
         add.setScaleY(1);
     }
-//عملکرد فایند حذف کردن (کامل ولی باگ داره)
+//عملکرد فرایند حذف کردن (کامل ولی باگ داره)
     @FXML
     void deleteClicked(MouseEvent event) {
         if (selectedCell != null) {
@@ -132,10 +161,18 @@ public class DatabaseController implements Initializable {
         edite.setScaleX(1);
         edite.setScaleY(1);
     }
-//سرچ کردن کامل نیست
+//سرچ کردن
     @FXML
     void searchClicked(MouseEvent event) {
-
+        String text = fieldText.getText();
+        if (text != null) {
+            Pack pack =  bpTree.search(text);
+            if (pack != null) {
+                searchResult.setText(pack.toString());
+            } else {
+                searchResult.setText("nothing found");
+            }
+        }
     }
 
     @FXML
@@ -156,10 +193,8 @@ public class DatabaseController implements Initializable {
         bpTree = HelloApplication.getTree();
         for (String temp : bpTree.traverse()) {
             Pack pack = bpTree.search(temp);
-            System.out.println(pack.toString());
             show(temp , pack, bpTree.traverse().indexOf(temp));
         }
-        fieldText.setVisible(false);
     }
 //درخت بی تری مرتبط با این دیتا بیس
     private static BPTree<String, Pack> bpTree;
