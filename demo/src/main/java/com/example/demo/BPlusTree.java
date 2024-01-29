@@ -1,4 +1,4 @@
-//<<<<<<< HEAD
+package com.example.demo;//<<<<<<< HEAD
 //package com.example.demo;
 //
 //import java.util.ArrayList;
@@ -259,3 +259,248 @@
 //
 //=======
 //>>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
+
+
+import java.util.*;
+
+public class BPTree<K extends Comparable<K>, V> {
+    private Node<K,V> root;
+    private final int degree;
+
+    public BPTree(int degree) {
+        if (degree < 2) {
+            throw new IllegalArgumentException("Degree must be at least 2");
+        }
+        this.degree = degree;
+        this.root = new LeafNode();
+    }
+
+    public void insert(K key, V value) {
+        root = root.insert(key, value);
+    }
+
+    public V search(K key) {
+        return (V) root.search(key);
+    }
+
+    public void delete(K key) {
+        root = root.delete(key);
+    }
+
+    public List<V> rangeSearch(K startKey, K endKey) {
+        return root.rangeSearch(startKey, endKey);
+    }
+
+    // Node interface
+    private interface Node<K,V> {
+        Node<K,V> insert(K key, V value);
+
+        V search(K key);
+
+        Node<K,V> delete(K key);
+
+        List<V> rangeSearch(K startKey, K endKey);
+
+        K getFirstLeafKey();
+    }
+
+    // InternalNode class
+    private class InternalNode implements Node<K,V> {
+        private List<K> keys;
+        private List<Node<K,V>> children;
+
+        InternalNode() {
+            this.keys = new ArrayList<>();
+            this.children = new ArrayList<>();
+        }
+
+        @Override
+        public Node<K,V> insert(K key, V value) {
+            int index = findIndex(key);
+            Node<K,V> child = children.get(index);
+            Node<K,V> newChild = child.insert(key, value);
+            if (newChild != child) {
+                // Child was split, update the keys and children lists
+                keys.add(index, newChild.getFirstLeafKey());
+                children.add(index + 1, newChild);
+                if (keys.size() >= degree) {
+                    return split();
+                }
+            }
+            return this;
+        }
+
+        @Override
+        public V search(K key) {
+            int index = findIndex(key);
+            return children.get(index).search(key);
+        }
+
+        @Override
+        public Node<K,V> delete(K key) {
+            int index = findIndex(key);
+           Node<K,V> child = children.get(index);
+           Node<K,V> newChild = child.delete(key);
+            if (newChild != child) {
+                // Child was deleted or merged, update the keys and children lists
+                keys.remove(index);
+                children.set(index, newChild);
+                if (keys.size() < degree / 2) {
+                    return merge();
+                }
+            }
+            return this;
+        }
+
+
+
+        @Override
+        public List<V> rangeSearch(K startKey, K endKey) {
+            int index = findIndex(startKey);
+            return children.get(index).rangeSearch(startKey, endKey);
+        }
+
+        @Override
+        public K getFirstLeafKey() {
+            Node<K,V> current = root;
+            while (!(current instanceof LeafNode)) {
+                current = ((InternalNode) current).children.get(0);
+            }
+            return ((LeafNode) current).keyValues.get(0).getFirst();
+        }
+
+        private int findIndex(K key) {
+            int index = 0;
+            while (index < keys.size() && key.compareTo(keys.get(index)) >= 0) {
+                index++;
+            }
+            return index;
+        }
+
+        private InternalNode split() {
+            InternalNode newNode = new InternalNode();
+            int midIndex = keys.size() / 2;
+            newNode.keys.addAll(keys.subList(midIndex + 1, keys.size()));
+            newNode.children.addAll(children.subList(midIndex + 1, children.size()));
+            keys.subList(midIndex, keys.size()).clear();
+            children.subList(midIndex + 1, children.size()).clear();
+            return newNode;
+        }
+    }
+
+    // LeafNode class
+    private class LeafNode implements Node<K,V> {
+        private List<Pair<K, V>> keyValues;
+        private LeafNode next;
+
+        LeafNode() {
+            this.keyValues = new ArrayList<>();
+            this.next = null;
+        }
+
+        @Override
+        public Node insert(K key, V value) {
+            int index = findIndex(key);
+            keyValues.add(index, new Pair<>(key, value));
+            if (keyValues.size() >= degree) {
+                return split();
+            }
+            return this;
+        }
+
+        @Override
+        public V search(K key) {
+            for (Pair<K, V> pair : keyValues) {
+                if (pair.getFirst().equals(key)) {
+                    return pair.getSecond();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        public Node delete(K key) {
+            int index = findIndex(key);
+            keyValues.remove(index);
+            if (keyValues.size() < degree / 2 && next != null) {
+                return mergeIfNeeded();
+            }
+            return this;
+        }
+
+        @Override
+        public List<V> rangeSearch(K startKey, K endKey) {
+            List<V> result = new ArrayList<>();
+            LeafNode current = this;
+            while (current != null) {
+                for (Pair<K, V> pair : current.keyValues) {
+                    K currentKey = pair.getFirst();
+                    if (currentKey.compareTo(startKey) >= 0 && currentKey.compareTo(endKey) <= 0) {
+                        result.add(pair.getSecond());
+                    }
+                }
+                current = current.next;
+            }
+            return result;
+        }
+
+        @Override
+        public K getFirstLeafKey() {
+            Node<K,V> current = root;
+            while (!(current instanceof LeafNode)) {
+                current = ((InternalNode) current).children.get(0);
+            }
+            return ((LeafNode) current).keyValues.get(0).getFirst();
+        }
+
+        private int findIndex(K key) {
+            int index = 0;
+            while (index < keyValues.size() && key.compareTo(keyValues.get(index).getFirst()) > 0) {
+                index++;
+            }
+            return index;
+        }
+
+        private LeafNode split() {
+            LeafNode newLeaf = new LeafNode();
+            int midIndex = keyValues.size() / 2;
+            newLeaf.keyValues.addAll(keyValues.subList(midIndex, keyValues.size()));
+            keyValues.subList(midIndex, keyValues.size()).clear();
+            newLeaf.next = this.next;
+            this.next = newLeaf;
+            return newLeaf;
+        }
+
+        public InternalNode mergeIfNeeded() {
+            if (next == null || keyValues.size() + next.keyValues.size() > degree) {
+                return null; // No merge needed
+            }
+
+            InternalNode mergedNode = new InternalNode();
+            mergedNode.keys.add(next.keyValues.get(0).getFirst());
+            mergedNode.children.add(this);
+            mergedNode.children.add(next);
+
+            return mergedNode;
+        }
+    }
+
+    private static class Pair<K, V> {
+        private K first;
+        private V second;
+
+        Pair(K first, V second) {
+            this.first = first;
+            this.second = second;
+        }
+
+        K getFirst() {
+            return first;
+        }
+
+        V getSecond() {
+            return second;
+        }
+    }
+
+}
