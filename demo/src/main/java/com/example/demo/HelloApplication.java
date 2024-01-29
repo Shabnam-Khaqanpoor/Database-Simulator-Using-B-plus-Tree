@@ -7,11 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 //        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+//        صفحه را مستقیم به بخش جدول به همراه یک درخت برای تست فرستادیم
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("database-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
@@ -20,6 +23,7 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+//        تست کیس
         Pack pack = new Pack();
         pack.addValue("ehsan");
         pack.addValue(987);
@@ -31,8 +35,10 @@ public class HelloApplication extends Application {
         pack1.addValue("opoknjvc");
         bpTree.insert("1" , pack , "ehsan");
         bpTree.insert("2" , pack1 , "ali");
+//        ----------------
         launch();
     }
+//    تست کیس
     static BPTree <String , Pack> bpTree = new BPTree<>();
     public static BPTree <String , Pack> getTree () {
         return bpTree ;
