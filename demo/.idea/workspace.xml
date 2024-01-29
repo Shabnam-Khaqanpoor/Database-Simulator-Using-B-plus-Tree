@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d613f47a-e76f-4ad2-8b50-dc87131e5b20" name="Changes" comment="start project.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/BPlusTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/BPlusTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
         <option value="FxmlFile" />
       </list>
@@ -43,12 +48,18 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+<<<<<<< HEAD
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+=======
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+>>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
     &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< HEAD
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
@@ -61,6 +72,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+=======
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\data structures\btree-shabnam\demo\src\main\resources\com\example\demo" />
+    </key>
+>>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -78,10 +95,15 @@
       <workItem from="1706438757932" duration="106000" />
       <workItem from="1706446048537" duration="461000" />
       <workItem from="1706447509711" duration="782000" />
+<<<<<<< HEAD
       <workItem from="1706451510702" duration="7604000" />
       <workItem from="1706461204743" duration="2093000" />
       <workItem from="1706467192529" duration="1786000" />
       <workItem from="1706514730598" duration="1376000" />
+=======
+      <workItem from="1706456498509" duration="3553000" />
+      <workItem from="1706469835861" duration="1165000" />
+>>>>>>> b3c3d15b34c41577abf2aeca465cc710b74ad10d
     </task>
     <task id="LOCAL-00001" summary="start project.">
       <created>1706438803766</created>
