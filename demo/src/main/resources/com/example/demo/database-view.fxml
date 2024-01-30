@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController" >
    <children>
       <ImageView fx:id="close" fitHeight="80.0" fitWidth="80.0" layoutX="1044.0" layoutY="136.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -61,7 +61,6 @@
       </ImageView>
       <Pane fx:id="table" layoutX="5.0" layoutY="5.0" prefHeight="680.0" prefWidth="990.0">
          <children>
-            <Pane fx:id="searchResult" layoutX="90.0" layoutY="40.0" prefHeight="640.0" prefWidth="900.0" />
             <Pane fx:id="column" prefHeight="680.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;">
                <children>
                   <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;">

@@ -6,12 +6,15 @@ import java.util.List;
 public class Pack implements Comparable {
     private int max ;
     List values = new ArrayList<>();
+    List <Type> types = new ArrayList<>() ;
     public Pack (int max) {
         this.max = max ;
     }
-    public void addValue (Object o) {
-        if (values.size() < max)
+    public void addValue (Object o , Type type) {
+        if (values.size() < max) {
             values.add(o);
+            types.add(type);
+        }
     }
     @Override
     public String toString() {

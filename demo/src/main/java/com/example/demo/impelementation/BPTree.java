@@ -1,5 +1,7 @@
 package com.example.demo.impelementation;
 
+import com.example.demo.Type;
+
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,17 +13,23 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
         return name;
     }
     private List<String> columnNames = new ArrayList<>() ;
-
     public List<String> getColumnNames() {
         return this.columnNames;
     }
     public String getColumn (int n) {
         return columnNames.get(n) ;
     }
-
-    public void addColumnName (String name) {
+    public void addColumnName (String name , Type type) {
         columnNames.add(name);
+        types.add(type);
     }
+    private List <Type> types = new ArrayList<>() ;
+
+    public Type getType(int n) {
+        return types.get(n);
+    }
+
+
     private int size = 0;
 
     public int getSize() {
