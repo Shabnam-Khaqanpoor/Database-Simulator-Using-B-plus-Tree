@@ -43,8 +43,6 @@ public class DatabaseController implements Initializable {
     private Pane column;
     @FXML
     private Pane row;
-    @FXML
-    private Pane searchResult;
 
     @FXML
     void closeClicked(MouseEvent event) {
@@ -158,7 +156,34 @@ public class DatabaseController implements Initializable {
 //سرچ کردن
     @FXML
     void searchClicked(MouseEvent event) {
+        String word = fieldText.getText();
+        if (!word.equals("")) {
+            Pack pack = bpTree.search(word);
+            int n = bpTree.getColumnNames().size();
+            Pane temp = new Pane();
+            temp.setPrefWidth(20 + n * 100);
+            temp.setPrefHeight(80);
+            pane.getChildren().add(temp);
+            temp.setLayoutX(500);
+            temp.setLayoutY(300);
+            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString())) ;
+            imageView.setFitWidth(temp.getWidth());
+            imageView.setFitHeight(80);
+            imageView.setOpacity(0.4);
+            temp.getChildren().add(imageView) ;
+            if (pack != null) {
+                for (int i = 0; i < n; i++) {
+                    Button button = new Button(pack.values.get(i).toString());
+                    button.setPrefWidth(90);
+                    button.setPrefHeight(40);
+                    temp.getChildren().add(button);
+                    button.setLayoutX(10 + i * 100);
+                    button.setLayoutY(20);
+                }
+            } else {
 
+            }
+        }
     }
 
     @FXML
@@ -175,7 +200,60 @@ public class DatabaseController implements Initializable {
 
     @FXML
     void addColumnClicked(MouseEvent event) {
-
+        Pane temp = new Pane() ;
+        temp.setPrefWidth(300);
+        temp.setPrefHeight(200);
+        ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString())) ;
+        imageView.setFitWidth(300);
+        imageView.setFitHeight(200);
+        imageView.setOpacity(0.4);
+        temp.getChildren().add(imageView) ;
+//        textFields
+        TextField columnName = new TextField() ;
+        columnName.setPrefWidth(150);
+        columnName.setPrefHeight(40);
+        temp.getChildren().add(columnName) ;
+        columnName.setLayoutX(140);
+        columnName.setLayoutY(20);
+        Text keyName = new Text("name of your column") ;
+        temp.getChildren().add(keyName) ;
+        keyName.setLayoutX(20);
+        keyName.setLayoutY(20);
+//
+        Button send = new Button("send") ;
+        send.setPrefWidth(50);
+        send.setPrefHeight(20);
+        temp.getChildren().add(send) ;
+        send.setLayoutX(200);
+        send.setLayoutY(100);
+        Button cancel = new Button("cancel") ;
+        cancel.setPrefWidth(50);
+        cancel.setPrefHeight(20);
+        temp.getChildren().add(cancel) ;
+        cancel.setLayoutX(50);
+        cancel.setLayoutY(100);
+        pane.getChildren().add(temp) ;
+        temp.setLayoutX(500);
+        temp.setLayoutY(200);
+        send.setOnMouseClicked(event1 -> {
+            String name = columnName.getText();
+            if (!name.equals("")) {
+                bpTree.addColumnName(name);
+                showRowBar(name);
+                for (int i = 0 ; i < bpTree.getSize() ; i++) {
+                    Button button = new Button();
+                    table.getChildren().add(button);
+                    button.setPrefWidth(90);
+                    button.setPrefHeight(40);
+                    button.setLayoutX(bpTree.getColumnNames().indexOf(name) * 95 + 90);
+                    button.setLayoutY(40 + i * 45);
+                }
+                temp.setVisible(false);
+            }
+        });
+        cancel.setOnMouseClicked(event1 -> {
+            temp.setVisible(false);
+        });
     }
 
     @FXML
@@ -195,7 +273,6 @@ public class DatabaseController implements Initializable {
         Pane temp = new Pane() ;
         temp.setPrefWidth(300);
         temp.setPrefHeight((bpTree.getColumnNames().size() + 1) * 50);
-//        یه عکس بزار اسمشو تو جای مشخص شده بزار ترجیحا مستطیل 8*3 باشه
         ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString())) ;
         imageView.setFitWidth(300);
         imageView.setFitHeight((bpTree.getColumnNames().size() + 2) * 50 + 20);
@@ -207,11 +284,11 @@ public class DatabaseController implements Initializable {
         textKey.setPrefHeight(40);
         temp.getChildren().add(textKey) ;
         textKey.setLayoutX(140);
-        textKey.setLayoutY(20);
+        textKey.setLayoutY(10);
         Text keyName = new Text("key") ;
         temp.getChildren().add(keyName) ;
         keyName.setLayoutX(20);
-        keyName.setLayoutY(20);
+        keyName.setLayoutY(10);
 //
         List<TextField> textFields = new ArrayList<>() ;
         for (int i = 0 ; i < bpTree.getColumnNames().size() ; i++) {
@@ -253,13 +330,14 @@ public class DatabaseController implements Initializable {
             if (textKey.getText().equals("")) {
                 full = false ;
             }
+//
             if (full) {
                 Pack pack = new Pack(bpTree.getColumnNames().size()) ;
                 for (int i= 0 ; i <bpTree.getColumnNames().size() ; i++) {
                     pack.addValue(textFields.get(i).getText());
                 }
-                bpTree.insert(keyName.getText() , pack);
-                show(keyName.getText() , pack , bpTree.traverse().indexOf(keyName.getText()));
+                bpTree.insert(textKey.getText() , pack);
+                showCellsRow(textKey.getText() , pack , bpTree.getSize()-1);
                 temp.setVisible(false);
             } else {
 
@@ -303,30 +381,35 @@ public class DatabaseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bpTree = HelloApplication.getTree();
         for (String column : bpTree.getColumnNames()) {
-            System.out.println(column);
-            Button button = new Button(column) ;
-            row.getChildren().add(button) ;
-            button.setPrefWidth(90);
-            button.setPrefHeight(40);
-            button.setLayoutX(bpTree.getColumnNames().indexOf(column) * 95);
-            button.setLayoutY(0);
+            showRowBar(column);
         }
-        for (String key : bpTree.traverse()) {
-            Pack pack = bpTree.search(key);
-            show(key , pack, bpTree.traverse().indexOf(key));
-        }
+        fullTable();
     }
 //درخت بی تری مرتبط با این دیتا بیس
     private static BPTree<String, Pack> bpTree;
 //    لیست سل ها یا همان تکست ها
     private List<Cell> cells = new ArrayList<>() ;
-    public void show(String key , Pack pack, int n) {
+    private void fullTable () {
+        for (String key : bpTree.traverse()) {
+            Pack pack = bpTree.search(key);
+            showCellsRow(key , pack , bpTree.traverse().indexOf(key));
+        }
+    }
+    public void showRowBar (String column) {
+        Button button = new Button(column) ;
+        row.getChildren().add(button) ;
+        button.setPrefWidth(90);
+        button.setPrefHeight(40);
+        button.setLayoutX(bpTree.getColumnNames().indexOf(column) * 95);
+        button.setLayoutY(0);
+    }
+    public void showCellsRow(String key , Pack pack , int n) {
         Button button = new Button(key) ;
         column.getChildren().add(button) ;
         button.setPrefWidth(90);
         button.setPrefHeight(40);
         button.setLayoutX(0);
-        button.setLayoutY(40 + bpTree.traverse().indexOf(key) * 45);
+        button.setLayoutY(40 + n * 45);
 //        نمایش سل ها
         for (int i = 0; i < pack.values.size(); i++) {
             Cell cell = new Cell(key, pack.values.get(i).toString() , 9);
@@ -341,6 +424,7 @@ public class DatabaseController implements Initializable {
             });
         }
     }
+
 //در صورت انتخاب یک سل ان به حالت سلکت شده در می اید
     private Cell selectedCell;
 //تابع چک کردن درست بودن مقادیر وارد شده (ناکامل)

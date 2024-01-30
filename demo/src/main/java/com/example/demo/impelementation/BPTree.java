@@ -15,9 +15,17 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public List<String> getColumnNames() {
         return this.columnNames;
     }
+    public String getColumn (int n) {
+        return columnNames.get(n) ;
+    }
 
     public void addColumnName (String name) {
         columnNames.add(name);
+    }
+    private int size = 0;
+
+    public int getSize() {
+        return size;
     }
 
     private BTreeNode<TKey> root;
@@ -43,6 +51,7 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
             if (n != null)
                 this.root = n;
         }
+        size ++ ;
     }
 
     /**
@@ -65,6 +74,7 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
             BTreeNode<TKey> n = leaf.dealUnderflow();
             if (n != null)
                 this.root = n;
+            size -- ;
         }
     }
 

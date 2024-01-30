@@ -61,6 +61,7 @@
       </ImageView>
       <Pane fx:id="table" layoutX="5.0" layoutY="5.0" prefHeight="680.0" prefWidth="990.0">
          <children>
+            <Pane fx:id="searchResult" layoutX="90.0" layoutY="40.0" prefHeight="640.0" prefWidth="900.0" />
             <Pane fx:id="column" prefHeight="680.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;">
                <children>
                   <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;">
@@ -74,7 +75,6 @@
                <rotationAxis>
                   <Point3D />
                </rotationAxis></Pane>
-            <Pane fx:id="searchResult" layoutX="90.0" layoutY="40.0" prefHeight="640.0" prefWidth="900.0" />
          </children>
       </Pane>
    </children>
