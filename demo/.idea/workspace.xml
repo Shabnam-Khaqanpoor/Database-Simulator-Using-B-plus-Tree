@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c1171c7-9ae6-4017-a614-0f19690f77e3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/stats.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/table (1).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/Pack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/Pack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/demo/hello-view.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="4c1171c7-9ae6-4017-a614-0f19690f77e3" name="Changes" comment="change first page of graphic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,8 +52,16 @@
       <option name="presentableId" value="Default" />
       <updated>1706592576733</updated>
       <workItem from="1706592578968" duration="120000" />
-      <workItem from="1706592706192" duration="3177000" />
+      <workItem from="1706592706192" duration="3534000" />
     </task>
+    <task id="LOCAL-00001" summary="change first page of graphic">
+      <created>1706597673876</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706597673876</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,5 +77,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="change first page of graphic" />
+    <option name="LAST_COMMIT_MESSAGE" value="change first page of graphic" />
   </component>
 </project>
