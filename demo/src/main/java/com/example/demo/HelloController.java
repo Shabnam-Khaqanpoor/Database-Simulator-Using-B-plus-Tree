@@ -65,6 +65,8 @@ public class HelloController implements Initializable {
         exit.setScaleY(1);
     }
 
+
+
     //    صفحه ای که قبل ورود به جدول تایید میگیرد
     @FXML
     private Pane paneImport;
@@ -73,9 +75,9 @@ public class HelloController implements Initializable {
     @FXML
     private TextField nameField;
     @FXML
-    private Button cancelButton;
+    private ImageView cancelButton;
     @FXML
-    private Button okButton;
+    private ImageView okButton;
 
     //    cancel
     @FXML
@@ -108,7 +110,7 @@ public class HelloController implements Initializable {
             stage.setTitle("Database");
             stage.setScene(scene);
             stage.show();
-            pane.setVisible(false);
+            paneImport.setVisible(false);
         } else {
             if (!nameField.getText().equals("")) {
                 if (checkName(nameField.getText())) {

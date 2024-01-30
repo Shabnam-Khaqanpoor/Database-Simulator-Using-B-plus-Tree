@@ -16,7 +16,7 @@
             <Image url="@8995515.png" />
          </image>
       </ImageView>
-      <Text fx:id="databaseName" fill="#4c4891" layoutX="15.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="235.1365966796875">
+      <Text fx:id="databaseName" fill="#4c4891" layoutX="30.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="235.1365966796875">
          <font>
             <Font name="Sylfaen" size="36.0" />
          </font>
@@ -29,11 +29,6 @@
             <Image url="@10700746.png" />
          </image>
       </ImageView>
-      <Text fx:id="searchResult" layoutX="30.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="758.936767578125">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
 
       <ImageView fx:id="edite" fitHeight="50.0" fitWidth="52.0" layoutX="1437.0" layoutY="255.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
 
@@ -53,19 +48,18 @@
             <Image url="@database-management.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addRow" fitHeight="70.0" fitWidth="103.0" layoutX="1427.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addRow" fitHeight="70.0" fitWidth="103.0" layoutX="1427.0" layoutY="354.0" onMouseClicked="#addRowClicked" onMouseEntered="#addRowEntered" onMouseExited="#addRowExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@rows.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addColumn" fitHeight="80.0" fitWidth="70.0" layoutX="1427.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addColumn" fitHeight="80.0" fitWidth="70.0" layoutX="1427.0" layoutY="463.0" onMouseClicked="#addColumnClicked" onMouseEntered="#addColumnEntered" onMouseExited="#addColumnExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@columns.png" />
          </image>
       </ImageView>
       <Pane fx:id="table" layoutX="30.0" layoutY="36.0" prefHeight="776.0" prefWidth="992.0">
          <children>
-            <Pane fx:id="searchResult" layoutX="88.0" layoutY="70.0" prefHeight="705.0" prefWidth="909.0" visible="false" />
             <Pane fx:id="column" prefHeight="776.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;">
                <children>
                   <Button layoutX="1.0" layoutY="7.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="89.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;">
@@ -76,6 +70,7 @@
                </children>
             </Pane>
             <Pane fx:id="row" layoutX="90.0" prefHeight="70.0" prefWidth="903.0" style="-fx-background-color: #CFCCD1;" />
+            <Pane fx:id="searchResult" layoutX="90.0" layoutY="70.0" prefHeight="706.0" prefWidth="903.0" />
          </children>
       </Pane>
    </children>

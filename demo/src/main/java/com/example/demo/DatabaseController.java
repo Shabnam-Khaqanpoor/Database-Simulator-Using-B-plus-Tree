@@ -27,96 +27,75 @@ public class DatabaseController implements Initializable {
     @FXML
     private ImageView close;
     @FXML
-    private ImageView add;
-    @FXML
     private ImageView delete;
     @FXML
     private ImageView edite;
     @FXML
-    private TextField fieldText;
+    private ImageView addColumn;
+    @FXML
+    private ImageView addRow;
     @FXML
     private ImageView search;
     @FXML
-    private Text searchResult;
-
-    @FXML
-    private ImageView addColumn;
-
-    @FXML
-    private ImageView addRow;
-
-
-    @FXML
-    private Pane column;
-
-    @FXML
-    private Pane row;
-
+    private TextField fieldText;
     @FXML
     private Pane table;
+    @FXML
+    private Pane column;
+    @FXML
+    private Pane row;
+    @FXML
+    private Pane searchResult;
+
 
     @FXML
     void closeClicked(MouseEvent event) {
         System.exit(0);
     }
-
-
     @FXML
     void closeEntered(MouseEvent event) {
         close.setScaleX(1.1);
         close.setScaleY(1.1);
     }
-
     @FXML
     void closeExited(MouseEvent event) {
         close.setScaleX(1);
         close.setScaleY(1);
     }
 //عملکرد دکمه اضافه کردن (کامل نشده)
-    @FXML
-    void addClicked(MouseEvent event) {
-        Pane temp = new Pane() ;
-        temp.setPrefWidth(300);
-        temp.setPrefHeight(800);
-//        یه عکس بزار اسمشو تو جای مشخص شده بزار ترجیحا مستطیل 8*3 باشه
-        ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("").toString())) ;
-        imageView.setFitWidth(300);
-        imageView.setFitHeight(800);
-        temp.getChildren().add(imageView) ;
-//        بجای 5 باید تعداد ستون ها قرار بگیرد
-        for (int i = 0 ; i < 5 ; i++) {
-            TextField textField = new TextField() ;
-            temp.getChildren().add(textField) ;
-            textField.setLayoutX(200);
-            textField.setLayoutY(50 * i + 50);
-            Text text = new Text("the name of colum") ;
-            temp.getChildren().add(text) ;
-            text.setLayoutX(10);
-            text.setLayoutY(60 * i + 50);
-        }
-        Button button = new Button("send") ;
-        temp.getChildren().add(button) ;
-        button.setLayoutX(50);
-        button.setLayoutY(700);
-        pane.getChildren().add(temp) ;
-        temp.setLayoutX(500);
-        temp.setLayoutY(200);
-        button.setOnMouseClicked(event1 -> {
-//            خواااااااابم میاد
-        });
-    }
+//    @FXML
+//    void addClicked(MouseEvent event) {
+//        Pane temp = new Pane() ;
+//        temp.setPrefWidth(300);
+//        temp.setPrefHeight(800);
+////        یه عکس بزار اسمشو تو جای مشخص شده بزار ترجیحا مستطیل 8*3 باشه
+//        ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("").toString())) ;
+//        imageView.setFitWidth(300);
+//        imageView.setFitHeight(800);
+//        temp.getChildren().add(imageView) ;
+////        بجای 5 باید تعداد ستون ها قرار بگیرد
+//        for (int i = 0 ; i < 5 ; i++) {
+//            TextField textField = new TextField() ;
+//            temp.getChildren().add(textField) ;
+//            textField.setLayoutX(200);
+//            textField.setLayoutY(50 * i + 50);
+//            Text text = new Text("the name of colum") ;
+//            temp.getChildren().add(text) ;
+//            text.setLayoutX(10);
+//            text.setLayoutY(60 * i + 50);
+//        }
+//        Button button = new Button("send") ;
+//        temp.getChildren().add(button) ;
+//        button.setLayoutX(50);
+//        button.setLayoutY(700);
+//        pane.getChildren().add(temp) ;
+//        temp.setLayoutX(500);
+//        temp.setLayoutY(200);
+//        button.setOnMouseClicked(event1 -> {
+////            خواااااااابم میاد
+//        });
+//    }
 
-    @FXML
-    void addEntered(MouseEvent event) {
-        add.setScaleX(1.1);
-        add.setScaleY(1.1);
-    }
-
-    @FXML
-    void addExited(MouseEvent event) {
-        add.setScaleX(1);
-        add.setScaleY(1);
-    }
 //عملکرد فرایند حذف کردن (کامل ولی باگ داره)
     @FXML
     void deleteClicked(MouseEvent event) {
@@ -181,15 +160,7 @@ public class DatabaseController implements Initializable {
 //سرچ کردن
     @FXML
     void searchClicked(MouseEvent event) {
-        String text = fieldText.getText();
-        if (text != null) {
-            Pack pack =  bpTree.search(text);
-            if (pack != null) {
-                searchResult.setText(pack.toString());
-            } else {
-                searchResult.setText("nothing found");
-            }
-        }
+
     }
 
     @FXML
@@ -203,6 +174,53 @@ public class DatabaseController implements Initializable {
         search.setScaleX(1);
         search.setScaleY(1);
     }
+
+    @FXML
+    void addColumnClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addColumnEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addColumnExited(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addRowClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addRowEntered(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addRowExited(MouseEvent event) {
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //شروع کار
 //    چاپ مقادیر اولیه درخت
     @Override
