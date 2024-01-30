@@ -1,5 +1,6 @@
 package com.example.demo.impelementation;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,34 +10,31 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public String getName() {
         return name;
     }
+    private List<String> columnNames = new ArrayList<>() ;
+
+    public List<String> getColumnNames() {
+        return this.columnNames;
+    }
+
+    public void addColumnName (String name) {
+        columnNames.add(name);
+    }
 
     private BTreeNode<TKey> root;
 //    تعداد ستون ها و اسم ان ها
-    private int colum ;
-    private List <String> columName = new ArrayList<>() ;
-
-    public String getColumName(int n) {
-        return columName.get(n);
-    }
-
-    public int getColum() {
-        return colum;
-    }
 
     public BPTree() {
         this.root = new BTreeLeafNode<TKey, TValue>();
-        this.colum = 0 ;
     }
     public BPTree(String name) {
         this.root = new BTreeLeafNode<TKey, TValue>();
-        this.colum = 0 ;
         this.name = name ;
     }
 
     /**
      * Insert a new key and its associated value into the B+ tree.
      */
-    public void insert(TKey key, TValue value , String name) {
+    public void insert(TKey key, TValue value) {
         BTreeLeafNode<TKey, TValue> leaf = this.findLeafNodeShouldContainKey(key);
         leaf.insertKey(key, value);
 
@@ -45,8 +43,6 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
             if (n != null)
                 this.root = n;
         }
-        colum ++ ;
-        columName.add(name);
     }
 
     /**

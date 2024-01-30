@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
 public class DatabaseController implements Initializable {
 //    شکال و ابزارک هایی که در صفحه هستند
     @FXML
@@ -47,10 +46,9 @@ public class DatabaseController implements Initializable {
     @FXML
     private Pane searchResult;
 
-
     @FXML
     void closeClicked(MouseEvent event) {
-        System.exit(0);
+
     }
     @FXML
     void closeEntered(MouseEvent event) {
@@ -220,12 +218,20 @@ public class DatabaseController implements Initializable {
 
 
 
-
-//شروع کار
-//    چاپ مقادیر اولیه درخت
+//    ----------------------------------
+    //    چاپ مقادیر اولیه درخت
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         bpTree = HelloApplication.getTree();
+        for (String column : bpTree.getColumnNames()) {
+            System.out.println(column);
+            Button button = new Button(column) ;
+            row.getChildren().add(button) ;
+            button.setPrefWidth(100);
+            button.setPrefHeight(30);
+            button.setLayoutX(5 + bpTree.getColumnNames().indexOf(column) * 105);
+            button.setLayoutY(5);
+        }
         for (String temp : bpTree.traverse()) {
             Pack pack = bpTree.search(temp);
             show(temp , pack, bpTree.traverse().indexOf(temp));
@@ -239,7 +245,6 @@ public class DatabaseController implements Initializable {
 //        نمایش سل ها
         for (int i = 0; i < temp.values.size(); i++) {
             Cell cell = new Cell(key, temp.values.get(i).toString() , 9);
-            System.out.println(temp.values.get(i));
             pane.getChildren().add(cell);
             cell.setLayoutX(300 + i * 50);
             cell.setLayoutY(100 + n * 50);
