@@ -5,9 +5,7 @@ import java.util.List;
 //باقی مجموعه اطلاعات (یک سطر) اینجانگه داری میشود
 public class Pack implements Comparable {
     List values = new ArrayList<>();
-    public Pack () {
-
-    }
+    public Pack () {}
     public void addValue (Object o) {
         values.add(o);
     }
