@@ -1,5 +1,6 @@
 package com.example.demo.impelementation;
 
+import com.example.demo.Pack;
 import com.example.demo.Type;
 
 import java.security.SecureRandom;
@@ -28,7 +29,14 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public Type getType(int n) {
         return types.get(n);
     }
+    public List<Type> getTypes() {
+        return types;
+    }
 
+    private List<TValue> packs = new ArrayList<>() ;
+    public List<TValue> getPacks() {
+        return packs;
+    }
 
     private int size = 0;
 
@@ -60,6 +68,7 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
                 this.root = n;
         }
         size ++ ;
+        packs.add(value);
     }
 
     /**

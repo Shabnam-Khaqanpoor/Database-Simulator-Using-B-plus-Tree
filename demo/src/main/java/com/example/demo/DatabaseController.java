@@ -137,13 +137,13 @@ public class DatabaseController implements Initializable {
             Pack pack = bpTree.search(word);
             int n = bpTree.getColumnNames().size();
             Pane temp = new Pane();
-            temp.setPrefWidth(n * 100);
+            temp.setPrefWidth(n * 100 + 70);
             temp.setPrefHeight(80);
             pane.getChildren().add(temp);
             temp.setLayoutX(500);
             temp.setLayoutY(300);
             ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString()));
-            imageView.setFitWidth(temp.getWidth());
+            imageView.setFitWidth(n * 100 + 70);
             imageView.setFitHeight(80);
             imageView.setOpacity(0.4);
             temp.getChildren().add(imageView);
@@ -167,8 +167,8 @@ public class DatabaseController implements Initializable {
             closeIcon.setFitWidth(40);
             closeIcon.setFitHeight(40);
             temp.getChildren().add(closeIcon);
-            closeIcon.setX(n * 100 - 50);
-            closeIcon.setY(20);
+            closeIcon.setLayoutX(n * 100 + 10);
+            closeIcon.setLayoutY(20);
             closeIcon.setOnMouseClicked(event1 -> {
                 onWorking = false;
                 temp.setVisible(false);
@@ -218,11 +218,11 @@ public class DatabaseController implements Initializable {
             columnName.setLayoutX(140);
             columnName.setLayoutY(20);
             TextField columnType = new TextField();
-            columnName.setPrefWidth(75);
-            columnName.setPrefHeight(40);
-            temp.getChildren().add(columnName);
-            columnName.setLayoutX(30);
-            columnName.setLayoutY(20);
+            columnType.setPrefWidth(75);
+            columnType.setPrefHeight(40);
+            temp.getChildren().add(columnType);
+            columnType.setLayoutX(30);
+            columnType.setLayoutY(20);
             Text keyName = new Text("name of your column");
             temp.getChildren().add(keyName);
             keyName.setLayoutX(20);
@@ -248,7 +248,7 @@ public class DatabaseController implements Initializable {
                 if (!name.equals("")) {
                     Type type = RegexClass.gettype(columnType.getText());
                     if (type != null) {
-                        bpTree.addColumnName(name, null);
+                        bpTree.addColumnName(name, type);
                         showRowBar(name);
                         for (int i = 0; i < bpTree.getSize(); i++) {
                             Button button = new Button();
@@ -257,6 +257,8 @@ public class DatabaseController implements Initializable {
                             button.setPrefHeight(40);
                             button.setLayoutX(bpTree.getColumnNames().indexOf(name) * 95 + 90);
                             button.setLayoutY(40 + i * 45);
+                            bpTree.getPacks().get(i).addMax();
+                            bpTree.getPacks().get(i).addValue(" "); ;
                         }
                         onWorking = false;
                         temp.setVisible(false);
@@ -339,6 +341,7 @@ public class DatabaseController implements Initializable {
             temp.setLayoutX(500);
             temp.setLayoutY(200);
             send.setOnMouseClicked(event1 -> {
+//                چک میکنه حتما همه فیلد ها پر شده باشن
                 boolean full = true;
                 for (TextField textField : textFields) {
                     if (textField.getText().equals("")) {
@@ -349,26 +352,31 @@ public class DatabaseController implements Initializable {
                 if (textKey.getText().equals("")) {
                     full = false;
                 }
-                boolean correct = true;
-                for (TextField textField : textFields) {
-                    if (textField.getText().equals("")) {
-                        full = false;
-                        break;
-                    }
-                }
-                if (textKey.getText().equals("")) {
-                    full = false;
-                }
+
 //
                 if (full) {
                     Pack pack = new Pack(bpTree.getColumnNames().size());
                     for (TextField textField : textFields) {
-                        pack.addValue(textField.getText(), bpTree.getType(textFields.indexOf(textField)));
+                        pack.addValue(textField.getText());
                     }
-                    bpTree.insert(textKey.getText(), pack);
-                    showCellsRow(textKey.getText(), pack, bpTree.getSize() - 1);
-                    temp.setVisible(false);
-                    onWorking = false;
+//                چک میکنه فیلد ها با مقادیر درستی پر شده باشن
+                    boolean correct = true;
+                    int i = 0 ;
+                    for (Type type : bpTree.getTypes()) {
+                        if (!pack.values.get(i).equals(type)) {
+                            correct = false ;
+                            break;
+                        }
+                        i++ ;
+                    }
+                    if (correct) {
+                        bpTree.insert(textKey.getText(), pack);
+                        showCellsRow(textKey.getText(), pack, bpTree.getSize() - 1);
+                        temp.setVisible(false);
+                        onWorking = false;
+                    } else {
+                        textKey.setText("your type is not correct");
+                    }
                 }
             });
             cancel.setOnMouseClicked(event1 -> {
