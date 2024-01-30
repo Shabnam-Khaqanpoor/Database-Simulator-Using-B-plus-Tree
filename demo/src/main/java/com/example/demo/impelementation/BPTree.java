@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BPTree<TKey extends Comparable<TKey>, TValue> {
+    private String name = "simple" ;
+
+    public String getName() {
+        return name;
+    }
+
     private BTreeNode<TKey> root;
 //    تعداد ستون ها و اسم ان ها
     private int colum ;
@@ -20,6 +26,11 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public BPTree() {
         this.root = new BTreeLeafNode<TKey, TValue>();
         this.colum = 0 ;
+    }
+    public BPTree(String name) {
+        this.root = new BTreeLeafNode<TKey, TValue>();
+        this.colum = 0 ;
+        this.name = name ;
     }
 
     /**

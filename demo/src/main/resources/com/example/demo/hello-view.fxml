@@ -20,7 +20,7 @@
             <Image url="@free-exit-icon-2860-thumb.png" />
          </image>
       </ImageView>
-      <Pane fx:id="paneImport" layoutX="1041.0" layoutY="303.0" prefHeight="200.0" prefWidth="398.0" visible="false">
+      <Pane fx:id="paneImport" layoutX="709.0" layoutY="381.0" prefHeight="200.0" prefWidth="398.0">
          <children>
             <Text fx:id="infoText" layoutX="54.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="information" wrappingWidth="307.13671875">
                <font>
@@ -40,11 +40,10 @@
             <TextField fx:id="nameField" layoutX="235.0" layoutY="75.0" promptText="name" />
          </children>
       </Pane>
-      <ImageView fitHeight="112.0" fitWidth="114.0" layoutX="865.0" layoutY="33.0" onMouseClicked="#database1" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="databaseName1" layoutX="865.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="112.0">
-         <font>
-            <Font name="Sylfaen" size="24.0" />
-         </font>
-      </Text>
+      <ImageView fx:id="add" fitHeight="100.0" fitWidth="100.0" layoutX="480.0" layoutY="20.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@11607162.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
