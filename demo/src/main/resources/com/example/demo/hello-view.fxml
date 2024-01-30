@@ -11,16 +11,11 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="800.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="573.0" fitWidth="615.0" layoutX="136.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@what-is-database0-1.jpg" />
+            <Image url="@data-management.png" />
          </image></ImageView>
-      <ImageView fx:id="add" fitHeight="46.0" fitWidth="56.0" layoutX="838.0" layoutY="17.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@11607162.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="exit" fitHeight="150.0" fitWidth="200.0" layoutX="1200.0" layoutY="147.0" onMouseClicked="#exitClicked" onMouseEntered="#exitEntered" onMouseExited="#exitExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit" fitHeight="66.0" fitWidth="120.0" layoutX="1447.0" layoutY="23.0" onMouseClicked="#exitClicked" onMouseEntered="#exitEntered" onMouseExited="#exitExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@free-exit-icon-2860-thumb.png" />
          </image>
@@ -45,5 +40,11 @@
             <TextField fx:id="nameField" layoutX="235.0" layoutY="75.0" promptText="name" />
          </children>
       </Pane>
+      <ImageView fitHeight="112.0" fitWidth="114.0" layoutX="865.0" layoutY="33.0" onMouseClicked="#database1" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="databaseName1" layoutX="865.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="112.0">
+         <font>
+            <Font name="Sylfaen" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
