@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +10,7 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
-      <ImageView fitHeight="573.0" fitWidth="615.0" layoutX="136.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="573.0" fitWidth="615.0" layoutX="135.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@data-management.png" />
          </image></ImageView>
@@ -20,29 +19,29 @@
             <Image url="@free-exit-icon-2860-thumb.png" />
          </image>
       </ImageView>
-      <Pane fx:id="paneImport" layoutX="709.0" layoutY="381.0" prefHeight="200.0" prefWidth="398.0">
+      <Pane fx:id="paneImport" layoutX="948.0" layoutY="278.0" prefHeight="200.0" prefWidth="316.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;" visible="false">
          <children>
-            <Text fx:id="infoText" layoutX="54.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="information" wrappingWidth="307.13671875">
+            <Text fx:id="infoText" layoutX="61.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.800048828125">
                <font>
-                  <Font size="20.0" />
+                  <Font name="Sylfaen" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="cancelButton" layoutX="284.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" prefHeight="50.0" prefWidth="100.0" text="cancel">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="okButton" layoutX="14.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" prefHeight="50.0" prefWidth="100.0" text="OK" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <TextField fx:id="nameField" layoutX="235.0" layoutY="75.0" promptText="name" />
+            <TextField fx:id="nameField" layoutX="39.0" layoutY="75.0" onAction="#okClicked" prefHeight="25.0" prefWidth="239.0" promptText="name" />
+            <ImageView fx:id="okButton" fitHeight="49.0" fitWidth="49.0" layoutX="74.0" layoutY="121.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@check-mark.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cancelButton" fitHeight="36.0" fitWidth="38.0" layoutX="199.0" layoutY="128.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@close.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="add" fitHeight="100.0" fitWidth="100.0" layoutX="480.0" layoutY="20.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="add" fitHeight="134.0" fitWidth="127.0" layoutX="24.0" layoutY="23.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@11607162.png" />
+            <Image url="@table%20(4).png" />
          </image>
       </ImageView>
    </children>

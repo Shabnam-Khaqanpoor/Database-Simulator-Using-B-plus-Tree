@@ -38,11 +38,28 @@ public class DatabaseController implements Initializable {
     private ImageView search;
     @FXML
     private Text searchResult;
-// عملکرد کلید خروج (کامل نشده )
+
+    @FXML
+    private ImageView addColumn;
+
+    @FXML
+    private ImageView addRow;
+
+
+    @FXML
+    private Pane column;
+
+    @FXML
+    private Pane row;
+
+    @FXML
+    private Pane table;
+
     @FXML
     void closeClicked(MouseEvent event) {
-
+        System.exit(0);
     }
+
 
     @FXML
     void closeEntered(MouseEvent event) {
