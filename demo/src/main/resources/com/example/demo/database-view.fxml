@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -9,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController">
    <children>
-      <ImageView fx:id="close" fitHeight="80.0" fitWidth="80.0" layoutX="1422.0" layoutY="22.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="close" fitHeight="80.0" fitWidth="80.0" layoutX="1044.0" layoutY="136.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@8995515.png" />
          </image>
@@ -22,15 +23,15 @@
          </font>
       </Text>
 
-      <TextField fx:id="fieldText" layoutX="1110.0" layoutY="37.0" prefHeight="50.0" prefWidth="276.0" />
-      <ImageView fx:id="search" fitHeight="59.0" fitWidth="60.0" layoutX="1043.0" layoutY="33.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="fieldText" layoutX="1096.0" layoutY="15.0" prefHeight="50.0" prefWidth="250.0" />
+      <ImageView fx:id="search" fitHeight="60.0" fitWidth="60.0" layoutX="1014.0" layoutY="10.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
 
          <image>
             <Image url="@10700746.png" />
          </image>
       </ImageView>
 
-      <ImageView fx:id="edite" fitHeight="50.0" fitWidth="52.0" layoutX="1437.0" layoutY="255.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edite" fitHeight="50.0" fitWidth="52.0" layoutX="1261.0" layoutY="191.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
 
 
          <image>
@@ -38,39 +39,42 @@
          </image>
       </ImageView>
 
-      <ImageView fx:id="delete" fitHeight="50.0" fitWidth="59.0" layoutX="1437.0" layoutY="149.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="delete" fitHeight="50.0" fitWidth="59.0" layoutX="1261.0" layoutY="111.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@5680113.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="275.0" fitWidth="246.0" layoutX="1140.0" layoutY="533.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="275.0" fitWidth="246.0" layoutX="1098.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@database-management.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addRow" fitHeight="70.0" fitWidth="103.0" layoutX="1427.0" layoutY="354.0" onMouseClicked="#addRowClicked" onMouseEntered="#addRowEntered" onMouseExited="#addRowExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addRow" fitHeight="70.0" fitWidth="103.0" layoutX="1241.0" layoutY="265.0" onMouseClicked="#addRowClicked" onMouseEntered="#addRowEntered" onMouseExited="#addRowExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@rows.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addColumn" fitHeight="80.0" fitWidth="70.0" layoutX="1427.0" layoutY="463.0" onMouseClicked="#addColumnClicked" onMouseEntered="#addColumnEntered" onMouseExited="#addColumnExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addColumn" fitHeight="80.0" fitWidth="70.0" layoutX="1241.0" layoutY="348.0" onMouseClicked="#addColumnClicked" onMouseEntered="#addColumnEntered" onMouseExited="#addColumnExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@columns.png" />
          </image>
       </ImageView>
-      <Pane fx:id="table" layoutX="30.0" layoutY="36.0" prefHeight="776.0" prefWidth="992.0">
+      <Pane fx:id="table" layoutX="5.0" layoutY="5.0" prefHeight="680.0" prefWidth="990.0">
          <children>
-            <Pane fx:id="column" prefHeight="776.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;">
+            <Pane fx:id="column" prefHeight="680.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;">
                <children>
-                  <Button layoutX="1.0" layoutY="7.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="89.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;">
                      <font>
                         <Font name="Sylfaen" size="12.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="row" layoutX="90.0" prefHeight="70.0" prefWidth="903.0" style="-fx-background-color: #CFCCD1;" />
-            <Pane fx:id="searchResult" layoutX="90.0" layoutY="70.0" prefHeight="706.0" prefWidth="903.0" />
+            <Pane fx:id="row" layoutX="90.0" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #CFCCD1;">
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis></Pane>
+            <Pane fx:id="searchResult" layoutX="90.0" layoutY="40.0" prefHeight="640.0" prefWidth="900.0" />
          </children>
       </Pane>
    </children>

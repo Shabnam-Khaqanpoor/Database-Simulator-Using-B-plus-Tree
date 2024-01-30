@@ -227,12 +227,18 @@ public class DatabaseController implements Initializable {
             System.out.println(column);
             Button button = new Button(column) ;
             row.getChildren().add(button) ;
-            button.setPrefWidth(100);
-            button.setPrefHeight(30);
-            button.setLayoutX(5 + bpTree.getColumnNames().indexOf(column) * 105);
-            button.setLayoutY(5);
+            button.setPrefWidth(90);
+            button.setPrefHeight(40);
+            button.setLayoutX(bpTree.getColumnNames().indexOf(column) * 95);
+            button.setLayoutY(0);
         }
         for (String temp : bpTree.traverse()) {
+            Button button = new Button(temp) ;
+            column.getChildren().add(button) ;
+            button.setPrefWidth(90);
+            button.setPrefHeight(40);
+            button.setLayoutX(0);
+            button.setLayoutY(40 + bpTree.traverse().indexOf(temp) * 45);
             Pack pack = bpTree.search(temp);
             show(temp , pack, bpTree.traverse().indexOf(temp));
         }
@@ -245,9 +251,11 @@ public class DatabaseController implements Initializable {
 //        نمایش سل ها
         for (int i = 0; i < temp.values.size(); i++) {
             Cell cell = new Cell(key, temp.values.get(i).toString() , 9);
-            pane.getChildren().add(cell);
-            cell.setLayoutX(300 + i * 50);
-            cell.setLayoutY(100 + n * 50);
+            table.getChildren().add(cell);
+            cell.setPrefWidth(90);
+            cell.setPrefHeight(40);
+            cell.setLayoutX(90 + i * 95);
+            cell.setLayoutY(40 + n * 45);
             cells.add(cell);
             cell.setOnMouseClicked(event -> {
                 selectedCell = cell ;

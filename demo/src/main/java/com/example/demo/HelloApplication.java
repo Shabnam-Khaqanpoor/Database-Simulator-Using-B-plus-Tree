@@ -23,7 +23,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        bpTree.addColumnName("key");
         bpTree.addColumnName("name");
         bpTree.addColumnName("number");
         bpTree.addColumnName("city");
