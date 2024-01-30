@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import javafx.scene.text.Text;
+import javafx.scene.control.Button;
 // بجای تکست عادی ازش اساتفاده میشود و میتواند کلید و شماره ستون را در خود ذخیره کند
-public class Cell <TKey> extends Text{
+public class Cell <TKey> extends Button {
     private int colum ;
     private TKey tKey ;
     public Cell (TKey tKey , String text , int colum) {

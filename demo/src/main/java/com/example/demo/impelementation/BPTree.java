@@ -1,5 +1,9 @@
 package com.example.demo.impelementation;
 
+import com.example.demo.Pack;
+import com.example.demo.Type;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,34 +13,52 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public String getName() {
         return name;
     }
+    private List<String> columnNames = new ArrayList<>() ;
+    public List<String> getColumnNames() {
+        return this.columnNames;
+    }
+    public String getColumn (int n) {
+        return columnNames.get(n) ;
+    }
+    public void addColumnName (String name , Type type) {
+        columnNames.add(name);
+        types.add(type);
+    }
+    private List <Type> types = new ArrayList<>() ;
+
+    public Type getType(int n) {
+        return types.get(n);
+    }
+    public List<Type> getTypes() {
+        return types;
+    }
+
+    private List<TValue> packs = new ArrayList<>() ;
+    public List<TValue> getPacks() {
+        return packs;
+    }
+
+    private int size = 0;
+
+    public int getSize() {
+        return size;
+    }
 
     private BTreeNode<TKey> root;
 //    تعداد ستون ها و اسم ان ها
-    private int colum ;
-    private List <String> columName = new ArrayList<>() ;
-
-    public String getColumName(int n) {
-        return columName.get(n);
-    }
-
-    public int getColum() {
-        return colum;
-    }
 
     public BPTree() {
         this.root = new BTreeLeafNode<TKey, TValue>();
-        this.colum = 0 ;
     }
     public BPTree(String name) {
         this.root = new BTreeLeafNode<TKey, TValue>();
-        this.colum = 0 ;
         this.name = name ;
     }
 
     /**
      * Insert a new key and its associated value into the B+ tree.
      */
-    public void insert(TKey key, TValue value , String name) {
+    public void insert(TKey key, TValue value) {
         BTreeLeafNode<TKey, TValue> leaf = this.findLeafNodeShouldContainKey(key);
         leaf.insertKey(key, value);
 
@@ -45,8 +67,8 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
             if (n != null)
                 this.root = n;
         }
-        colum ++ ;
-        columName.add(name);
+        size ++ ;
+        packs.add(value);
     }
 
     /**
@@ -69,6 +91,7 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
             BTreeNode<TKey> n = leaf.dealUnderflow();
             if (n != null)
                 this.root = n;
+            size -- ;
         }
     }
 
