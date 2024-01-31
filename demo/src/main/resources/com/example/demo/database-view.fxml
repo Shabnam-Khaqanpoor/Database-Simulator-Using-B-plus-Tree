@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController" >
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.DatabaseController">
    <children>
-      <ImageView fx:id="close" fitHeight="80.0" fitWidth="80.0" layoutX="1044.0" layoutY="136.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="close" fitHeight="60.0" fitWidth="70.0" layoutX="1286.0" layoutY="10.0" onMouseClicked="#closeClicked" onMouseEntered="#closeEntered" onMouseExited="#closeExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@8995515.png" />
          </image>
@@ -23,7 +23,7 @@
          </font>
       </Text>
 
-      <TextField fx:id="fieldText" layoutX="1096.0" layoutY="15.0" prefHeight="50.0" prefWidth="250.0" />
+      <TextField fx:id="fieldText" layoutX="1085.0" layoutY="14.0" prefHeight="37.0" prefWidth="175.0" />
       <ImageView fx:id="search" fitHeight="60.0" fitWidth="60.0" layoutX="1014.0" layoutY="10.0" onMouseClicked="#searchClicked" onMouseEntered="#searchEntered" onMouseExited="#searchExited" pickOnBounds="true" preserveRatio="true">
 
          <image>
@@ -31,7 +31,7 @@
          </image>
       </ImageView>
 
-      <ImageView fx:id="edite" fitHeight="50.0" fitWidth="52.0" layoutX="1261.0" layoutY="191.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="edite" fitHeight="50.0" fitWidth="52.0" layoutX="1190.0" layoutY="97.0" onMouseClicked="#editeClicked" onMouseEntered="#editeEntered" onMouseExited="#editeExited" pickOnBounds="true" preserveRatio="true">
 
 
          <image>
@@ -39,41 +39,103 @@
          </image>
       </ImageView>
 
-      <ImageView fx:id="delete" fitHeight="50.0" fitWidth="59.0" layoutX="1261.0" layoutY="111.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="delete" fitHeight="50.0" fitWidth="59.0" layoutX="1098.0" layoutY="97.0" onMouseClicked="#deleteClicked" onMouseEntered="#deleteEntered" onMouseExited="#deleteExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@5680113.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="275.0" fitWidth="246.0" layoutX="1098.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="345.0" fitWidth="296.0" layoutX="1032.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@database-management.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addRow" fitHeight="70.0" fitWidth="103.0" layoutX="1241.0" layoutY="265.0" onMouseClicked="#addRowClicked" onMouseEntered="#addRowEntered" onMouseExited="#addRowExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addRow" fitHeight="70.0" fitWidth="103.0" layoutX="1180.0" layoutY="195.0" onMouseClicked="#addRowClicked" onMouseEntered="#addRowEntered" onMouseExited="#addRowExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@rows.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="addColumn" fitHeight="80.0" fitWidth="70.0" layoutX="1241.0" layoutY="348.0" onMouseClicked="#addColumnClicked" onMouseEntered="#addColumnEntered" onMouseExited="#addColumnExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addColumn" fitHeight="80.0" fitWidth="70.0" layoutX="1088.0" layoutY="195.0" onMouseClicked="#addColumnClicked" onMouseEntered="#addColumnEntered" onMouseExited="#addColumnExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@columns.png" />
          </image>
       </ImageView>
-      <Pane fx:id="table" layoutX="5.0" layoutY="5.0" prefHeight="680.0" prefWidth="990.0">
+      <Pane fx:id="table" layoutX="4.0" layoutY="5.0" prefHeight="680.0" prefWidth="991.0">
          <children>
-            <Pane fx:id="column" prefHeight="680.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;">
+            <Pane fx:id="column" layoutY="40.0" prefHeight="640.0" prefWidth="90.0" style="-fx-background-color: #CFCCD1;" />
+            <Pane fx:id="row" prefHeight="40.0" prefWidth="990.0" style="-fx-background-color: #CFCCD1;">
+               <rotationAxis>
+                  <Point3D />
+               </rotationAxis>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;">
+                  <Button fx:id="patternButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Row">
                      <font>
                         <Font name="Sylfaen" size="12.0" />
                      </font>
                   </Button>
-               </children>
-            </Pane>
-            <Pane fx:id="row" layoutX="90.0" prefHeight="40.0" prefWidth="900.0" style="-fx-background-color: #CFCCD1;">
-               <rotationAxis>
-                  <Point3D />
-               </rotationAxis></Pane>
+               </children></Pane>
+         </children>
+      </Pane>
+      <Pane fx:id="paneImport1" layoutX="1064.0" layoutY="513.0" opacity="0.82" prefHeight="121.0" prefWidth="250.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="134.0" layoutY="58.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@check-mark.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="194.0" layoutY="63.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@close.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="56.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Are you sure?">
+               <font>
+                  <Font name="Sylfaen" size="24.0" />
+               </font>
+            </Text>
+            <Button fx:id="patternButton111" layoutX="38.0" layoutY="58.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="delete all">
+               <font>
+                  <Font name="Sylfaen" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="paneImport" layoutX="1028.0" layoutY="303.0" opacity="0.85" prefHeight="171.0" prefWidth="323.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
+         <children>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="153.0" layoutY="110.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@check-mark.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="214.0" layoutY="116.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@close.png" />
+               </image>
+            </ImageView>
+            <TextField layoutX="70.0" layoutY="14.0" onKeyPressed="#okClicked" prefHeight="36.0" prefWidth="184.0" promptText="name of your column...">
+               <font>
+                  <Font name="Sylfaen" size="14.0" />
+               </font>
+            </TextField>
+            <Button fx:id="patternButton1" layoutX="123.0" layoutY="61.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Number">
+               <font>
+                  <Font name="Sylfaen" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="patternButton11" layoutX="47.0" layoutY="61.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="String">
+               <font>
+                  <Font name="Sylfaen" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="patternButton12" layoutX="196.0" layoutY="61.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Date">
+               <font>
+                  <Font name="Sylfaen" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="patternButton112" layoutX="47.0" layoutY="111.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Unique">
+               <font>
+                  <Font name="Sylfaen" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>

@@ -85,6 +85,7 @@ public class HelloController implements Initializable {
         selectedTree = null;
         selected = false;
         paneImport.setVisible(false);
+        nameField.setText("");
     }
 
     @FXML
@@ -118,6 +119,7 @@ public class HelloController implements Initializable {
                     tables.add(tree);
                     showTree(tree);
                     paneImport.setVisible(false);
+                    nameField.setText("");
                 } else {
                     infoText.setText("input is Repetitious");
                 }
@@ -172,8 +174,8 @@ public class HelloController implements Initializable {
         Pane temp = new Pane();
         temp.setPrefWidth(115);
         temp.setPrefHeight(115);
-        temp.setLayoutX(850);
-        temp.setLayoutY(85);
+        temp.setLayoutX(800);
+        temp.setLayoutY(50);
         Image image = new Image(HelloApplication.class.getResource("table (1).png").toString());
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(115);

@@ -91,8 +91,8 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
             BTreeNode<TKey> n = leaf.dealUnderflow();
             if (n != null)
                 this.root = n;
-            size -- ;
         }
+        size -- ;
     }
 
     /**

@@ -2,7 +2,10 @@ package com.example.demo;
 
 import com.example.demo.impelementation.BPTree;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -11,9 +14,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -48,8 +55,13 @@ public class DatabaseController implements Initializable {
 
     //    توابع ایکون خروج
     @FXML
-    void closeClicked(MouseEvent event) {
-
+    void closeClicked(MouseEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(parent);
+        stage.setTitle("Databases");
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -64,7 +76,6 @@ public class DatabaseController implements Initializable {
         close.setScaleY(1);
     }
 
-    //عملکرد فرایند حذف کردن (کامل ولی باگ داره)
     @FXML
     void deleteClicked(MouseEvent event) {
         if (selectedCell != null) {
@@ -229,12 +240,14 @@ public class DatabaseController implements Initializable {
             keyName.setLayoutY(20);
 //
             Button send = new Button("send");
+            send.setStyle(patternButton.getStyle());
             send.setPrefWidth(50);
             send.setPrefHeight(20);
             temp.getChildren().add(send);
             send.setLayoutX(200);
             send.setLayoutY(100);
             Button cancel = new Button("cancel");
+            cancel.setStyle(patternButton.getStyle());
             cancel.setPrefWidth(50);
             cancel.setPrefHeight(20);
             temp.getChildren().add(cancel);
@@ -251,14 +264,19 @@ public class DatabaseController implements Initializable {
                         bpTree.addColumnName(name, type);
                         showRowBar(name);
                         for (int i = 0; i < bpTree.getSize(); i++) {
-                            Button button = new Button();
-                            table.getChildren().add(button);
-                            button.setPrefWidth(90);
-                            button.setPrefHeight(40);
-                            button.setLayoutX(bpTree.getColumnNames().indexOf(name) * 95 + 90);
-                            button.setLayoutY(40 + i * 45);
+                            Cell cell = new Cell(bpTree.traverse().get(i), "", bpTree.getColumnNames().size());
+                            table.getChildren().add(cell);
+                            cell.setPrefWidth(90);
+                            cell.setPrefHeight(40);
+                            cell.setLayoutX(bpTree.getColumnNames().indexOf(name) * 95 + 90);
+                            cell.setLayoutY(40 + i * 45);
+                            cell.setStyle(patternButton.getStyle());
+                            cells.add(cell);
                             bpTree.getPacks().get(i).addMax();
-                            bpTree.getPacks().get(i).addValue(" "); ;
+                            bpTree.getPacks().get(i).addValue(" ");
+                            cell.setOnMouseClicked(event2 -> {
+                                selectedCell = cell;
+                            });
                         }
                         onWorking = false;
                         temp.setVisible(false);
@@ -361,13 +379,20 @@ public class DatabaseController implements Initializable {
                     }
 //                چک میکنه فیلد ها با مقادیر درستی پر شده باشن
                     boolean correct = true;
-                    int i = 0 ;
+                    int i = 0;
                     for (Type type : bpTree.getTypes()) {
-                        if (!pack.values.get(i).equals(type)) {
-                            correct = false ;
-                            break;
+                        switch (type) {
+                            case dateT -> {
+                                correct = RegexClass.checkDate((String) pack.values.get(i));
+                            }
+                            case stringT -> {
+                                correct = RegexClass.checkString((String) pack.values.get(i));
+                            }
+                            case doubleT -> {
+                                correct = RegexClass.checkDouble((String) pack.values.get(i));
+                            }
                         }
-                        i++ ;
+                        i++;
                     }
                     if (correct) {
                         bpTree.insert(textKey.getText(), pack);
@@ -418,19 +443,22 @@ public class DatabaseController implements Initializable {
     private void makeFullTable() {
         for (String key : bpTree.traverse()) {
             Pack pack = bpTree.search(key);
-            int n = bpTree.traverse().indexOf(key) ;
+            int n = bpTree.traverse().indexOf(key);
             showCellsRow(key, pack, n);
-            System.out.println(n);
         }
     }
+
+    @FXML
+    private Button patternButton;
 
     public void showRowBar(String column) {
         Button button = new Button(column);
         row.getChildren().add(button);
         button.setPrefWidth(90);
         button.setPrefHeight(40);
-        button.setLayoutX(bpTree.getColumnNames().indexOf(column) * 95);
+        button.setLayoutX(bpTree.getColumnNames().indexOf(column) * 95 + 90);
         button.setLayoutY(0);
+        button.setStyle(patternButton.getStyle());
     }
 
     public void showCellsRow(String key, Pack pack, int n) {
@@ -439,7 +467,9 @@ public class DatabaseController implements Initializable {
         button.setPrefWidth(90);
         button.setPrefHeight(40);
         button.setLayoutX(0);
-        button.setLayoutY(40 + n * 45);
+        button.setLayoutY(n * 45);
+        button.setStyle(patternButton.getStyle());
+
 //        نمایش سل ها
         for (int i = 0; i < pack.values.size(); i++) {
             Cell cell = new Cell(key, pack.values.get(i).toString(), i);
@@ -449,6 +479,7 @@ public class DatabaseController implements Initializable {
             cell.setLayoutX(90 + i * 95);
             cell.setLayoutY(40 + n * 45);
             cells.add(cell);
+            cell.setStyle(patternButton.getStyle());
             cell.setOnMouseClicked(event -> {
                 selectedCell = cell;
             });
@@ -485,9 +516,9 @@ public class DatabaseController implements Initializable {
                 List<Cell> del = new ArrayList<>();
                 for (Cell cell : cells) {
                     if (cell.getKey().equals(key)) {
-                        table.getChildren().remove(cell);
                         del.add(cell);
                     }
+                    table.getChildren().remove(cell);
                 }
                 for (Cell cell : del) {
                     cells.remove(cell);
@@ -496,6 +527,14 @@ public class DatabaseController implements Initializable {
                 selectedCell = null;
                 onWorking = false;
                 temp.setVisible(false);
+
+                column.getChildren().clear();     //remove all IDs
+
+                for (int i = 0; i < bpTree.getSize(); i++) {    //show items after deleting a row
+                    String key1 = bpTree.traverse().get(i);
+                    showCellsRow(key1, bpTree.search(key1), i);
+                }
+
             });
             buttonCancel.setOnMouseClicked(event -> {
                 pane.getChildren().remove(temp);

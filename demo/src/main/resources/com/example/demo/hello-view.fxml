@@ -8,41 +8,41 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1535.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
    <children>
-      <Pane fx:id="paneImport" layoutX="708.0" layoutY="418.0" prefHeight="200.0" prefWidth="316.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
-         <children>
-            <Text fx:id="infoText" layoutX="61.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.800048828125">
-               <font>
-                  <Font name="Sylfaen" size="24.0" />
-               </font>
-            </Text>
-            <TextField fx:id="nameField" layoutX="39.0" layoutY="75.0" onAction="#okClicked" prefHeight="25.0" prefWidth="239.0" promptText="name" />
-            <ImageView fx:id="okButton" fitHeight="49.0" fitWidth="49.0" layoutX="74.0" layoutY="121.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@check-mark.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="cancelButton" fitHeight="36.0" fitWidth="38.0" layoutX="199.0" layoutY="128.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@close.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <ImageView fitHeight="573.0" fitWidth="615.0" layoutX="135.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="492.0" fitWidth="543.0" layoutX="135.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@data-management.png" />
          </image></ImageView>
-      <ImageView fx:id="exit" fitHeight="66.0" fitWidth="120.0" layoutX="1447.0" layoutY="23.0" onMouseClicked="#exitClicked" onMouseEntered="#exitEntered" onMouseExited="#exitExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="exit" fitHeight="66.0" fitWidth="120.0" layoutX="1273.0" layoutY="23.0" onMouseClicked="#exitClicked" onMouseEntered="#exitEntered" onMouseExited="#exitExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@free-exit-icon-2860-thumb.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="add" fitHeight="134.0" fitWidth="127.0" layoutX="24.0" layoutY="23.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="add" fitHeight="97.0" fitWidth="100.0" layoutX="54.0" layoutY="41.0" onMouseClicked="#addClicked" onMouseEntered="#addEntered" onMouseExited="#addExited" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@table (4).png" />
          </image>
       </ImageView>
+      <Pane fx:id="paneImport" layoutX="268.0" layoutY="23.0" prefHeight="145.0" prefWidth="237.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
+         <children>
+            <TextField fx:id="nameField" layoutX="31.0" layoutY="60.0" onAction="#okClicked" onKeyPressed="#okClicked" prefHeight="25.0" prefWidth="174.0" promptText="name" />
+            <ImageView fx:id="okButton" fitHeight="36.0" fitWidth="36.0" layoutX="63.0" layoutY="96.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@check-mark.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cancelButton" fitHeight="25.0" fitWidth="28.0" layoutX="133.0" layoutY="102.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@close.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="infoText" layoutX="45.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="146.20001220703125">
+               <font>
+                  <Font name="Sylfaen" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
