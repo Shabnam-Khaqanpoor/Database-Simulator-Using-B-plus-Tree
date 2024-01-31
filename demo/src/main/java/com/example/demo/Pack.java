@@ -14,6 +14,12 @@ public class Pack implements Comparable {
             values.add(o);
         }
     }
+    public void deleteValue (int n) {
+        values.add(n , "");
+    }
+    public void editeValue (int n , Object ob) {
+        values.add(n , ob);
+    }
     @Override
     public String toString() {
         StringBuilder text = new StringBuilder();
