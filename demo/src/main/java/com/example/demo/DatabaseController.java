@@ -153,7 +153,7 @@ public class DatabaseController implements Initializable {
             pane.getChildren().add(temp);
             temp.setLayoutX(500);
             temp.setLayoutY(300);
-            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString()));
+            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color2.png").toString()));
             imageView.setFitWidth(n * 100 + 70);
             imageView.setFitHeight(80);
             imageView.setOpacity(0.4);
@@ -237,46 +237,41 @@ public class DatabaseController implements Initializable {
             Pane temp = new Pane();
             temp.setPrefWidth(300);
             temp.setPrefHeight((bpTree.getColumnNames().size() + 1) * 50);
-            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString()));
+            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color2.png").toString()));
             imageView.setFitWidth(300);
             imageView.setFitHeight((bpTree.getColumnNames().size() + 2) * 50 + 20);
             imageView.setOpacity(0.4);
             temp.getChildren().add(imageView);
-//        textFields
-            TextField textKey = new TextField();
-            textKey.setPrefWidth(150);
-            textKey.setPrefHeight(40);
-            temp.getChildren().add(textKey);
-            textKey.setLayoutX(140);
-            textKey.setLayoutY(10);
-            Text keyName = new Text("key");
-            temp.getChildren().add(keyName);
-            keyName.setLayoutX(20);
-            keyName.setLayoutY(10);
-//
+            Text addRowInfo = new Text("enter your information");
+            temp.getChildren().add(addRowInfo);
+            addRowInfo.setLayoutX(40);
+            addRowInfo.setLayoutY(40);
+//               textFields
             List<TextField> textFields = new ArrayList<>();
             for (int i = 0; i < bpTree.getColumnNames().size(); i++) {
                 TextField textField = new TextField();
                 textField.setPrefWidth(150);
                 textField.setPrefHeight(40);
                 temp.getChildren().add(textField);
-                textField.setLayoutX(140);
+                textField.setLayoutX(130);
                 textField.setLayoutY(10 + (i + 1) * 50);
                 textFields.add(textField);
                 Text text = new Text(bpTree.getColumnNames().get(i));
                 temp.getChildren().add(text);
-                text.setLayoutX(20);
+                text.setLayoutX(40);
                 text.setLayoutY(30 + (i + 1) * 50);
             }
             Button send = new Button("send");
-            send.setPrefWidth(50);
+            send.setPrefWidth(70);
             send.setPrefHeight(20);
+            send.setStyle(patternButton.getStyle());
             temp.getChildren().add(send);
             send.setLayoutX(200);
             send.setLayoutY(70 + bpTree.getColumnNames().size() * 50);
             Button cancel = new Button("cancel");
-            cancel.setPrefWidth(50);
+            cancel.setPrefWidth(70);
             cancel.setPrefHeight(20);
+            cancel.setStyle(patternButton.getStyle());
             temp.getChildren().add(cancel);
             cancel.setLayoutX(50);
             cancel.setLayoutY(70 + bpTree.getColumnNames().size() * 50);
@@ -292,11 +287,8 @@ public class DatabaseController implements Initializable {
                         break;
                     }
                 }
-                if (textKey.getText().equals("")) {
-                    full = false;
-                }
 
-//
+
                 if (full) {
                     Pack pack = new Pack(bpTree.getColumnNames().size());
                     for (TextField textField : textFields) {
@@ -304,6 +296,8 @@ public class DatabaseController implements Initializable {
                     }
 //                چک میکنه فیلد ها با مقادیر درستی پر شده باشن
                     boolean correct = true;
+//                    چک کردن برای ستون های یکتا
+                    boolean uniqueCheck = true ;
                     int i = 0;
                     for (Type type : bpTree.getTypes()) {
                         switch (type) {
@@ -317,15 +311,40 @@ public class DatabaseController implements Initializable {
                                 correct = RegexClass.checkDouble((String) pack.values.get(i));
                             }
                         }
+                        if (!correct ) {
+                            break;
+                        }
+
+                        if (bpTree.getUnique(i)) {
+                            for (String key : bpTree.traverse()) {
+                                Object ob = bpTree.search(key).values.get(i) ;
+                                if (pack.values.get(i).equals(ob)) {
+                                    uniqueCheck = false ;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!uniqueCheck ) {
+                            break;
+                        }
                         i++;
                     }
+
+
+
                     if (correct) {
-                        bpTree.insert(textKey.getText(), pack);
-                        showCellsRow(textKey.getText(), pack, bpTree.getSize() - 1);
-                        temp.setVisible(false);
-                        onWorking = false;
+                        if (uniqueCheck) {
+                            String index = String.valueOf(myIndex);
+                            myIndex ++ ;
+                            bpTree.insert(index, pack);
+                            showCellsRow(index, pack, bpTree.getSize() - 1);
+                            temp.setVisible(false);
+                            onWorking = false;
+                        } else {
+                            addRowInfo.setText("your input is repetitious");
+                        }
                     } else {
-                        textKey.setText("your type is not correct");
+                        addRowInfo.setText("your type is not correct");
                     }
                 }
             });
@@ -401,6 +420,10 @@ public class DatabaseController implements Initializable {
                 }
                 onWorking = false;
                 paneAddColumn.setVisible(false);
+                addColumnField.setText("");
+                newColumnType = null ;
+                unique = false ;
+                uniqueLight.setVisible(false);
             }
         }
     }
@@ -421,6 +444,8 @@ public class DatabaseController implements Initializable {
         addColumnField.setText("");
         onWorking = false ;
         paneAddColumn.setVisible(false);
+        newColumnType = null ;
+        unique = false ;
     }
     @FXML
     void cancelAddColumnEntered(MouseEvent event) {
@@ -522,7 +547,7 @@ public class DatabaseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         paneAddColumn.setVisible(false);
         paneDelete.setVisible(false);
-        bpTree = HelloApplication.getTree();
+        bpTree = HelloController.getSelectedTree();
         for (String column : bpTree.getColumnNames()) {
             showRowBar(column);
         }
@@ -535,6 +560,8 @@ public class DatabaseController implements Initializable {
     private Cell selectedCell;
     //    لیست سل ها یا همان تکست ها
     private List<Cell> cells = new ArrayList<>();
+
+    private static int myIndex = 0 ;
 
     private void makeFullTable() {
         for (String key : bpTree.traverse()) {

@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.impelementation.BPTree;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,10 +21,13 @@ import java.net.URL;
 import java.util.*;
 
 public class HelloController implements Initializable {
+
     @FXML
-    private ImageView add;
+    private AnchorPane pane; // the main pane
     @FXML
-    private ImageView exit;
+    private ImageView add; // add table icon
+    @FXML
+    private ImageView exit; // exit icon
 
     //    add a table
     @FXML
@@ -34,31 +38,26 @@ public class HelloController implements Initializable {
         nameField.setVisible(true);
         infoText.setText("name of the table : ");
     }
-
-    //    just for show in the graphic
     @FXML
     void addEntered(MouseEvent event) {
         add.setScaleX(1.1);
         add.setScaleY(1.1);
     }
-
     @FXML
     void addExited(MouseEvent event) {
         add.setScaleX(1);
         add.setScaleY(1);
     }
-
+//    exit
     @FXML
     void exitClicked(MouseEvent event) {
         System.exit(0);
     }
-
     @FXML
     void exitEntered(MouseEvent event) {
         exit.setScaleX(1.1);
         exit.setScaleY(1.1);
     }
-
     @FXML
     void exitExited(MouseEvent event) {
         exit.setScaleX(1);
@@ -67,7 +66,7 @@ public class HelloController implements Initializable {
 
 
 
-    //    صفحه ای که قبل ورود به جدول تایید میگیرد
+//    add table page
     @FXML
     private Pane paneImport;
     @FXML
@@ -79,7 +78,7 @@ public class HelloController implements Initializable {
     @FXML
     private ImageView okButton;
 
-    //    cancel
+    //    cancel button
     @FXML
     void cancelClicked(MouseEvent event) {
         selectedTree = null;
@@ -87,23 +86,24 @@ public class HelloController implements Initializable {
         paneImport.setVisible(false);
         nameField.setText("");
     }
-
     @FXML
     void cancelEntered(MouseEvent event) {
         cancelButton.setScaleX(1.1);
         cancelButton.setScaleY(1.1);
     }
-
     @FXML
     void cancelExited(MouseEvent event) {
         cancelButton.setScaleX(1);
         cancelButton.setScaleY(1);
     }
-
-    //    تایید کردن
+    //    make sure about making table with enter
+    @FXML
+    void enterPressed(ActionEvent event){
+        makeTable();
+    }
+//    make sure about making table or loading a table
     @FXML
     void okClicked(MouseEvent event) throws IOException {
-        System.out.println(selected);
         if (selected) {
             Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("database-view.fxml")));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
@@ -113,36 +113,20 @@ public class HelloController implements Initializable {
             stage.show();
             paneImport.setVisible(false);
         } else {
-            if (!nameField.getText().equals("")) {
-                if (checkName(nameField.getText())) {
-                    BPTree tree = new BPTree(nameField.getText());
-                    tables.add(tree);
-                    showTree(tree);
-                    paneImport.setVisible(false);
-                    nameField.setText("");
-                } else {
-                    infoText.setText("input is Repetitious");
-                }
-            } else {
-                infoText.setText("input is not ok");
-            }
+            makeTable();
         }
     }
-
     @FXML
     void okEntered(MouseEvent event) {
         okButton.setScaleX(1.1);
         okButton.setScaleY(1.1);
     }
-
     @FXML
     void okExited(MouseEvent event) {
         okButton.setScaleX(1);
         okButton.setScaleY(1);
     }
 
-    @FXML
-    private AnchorPane pane;
 
     //    initialize
     @Override
@@ -150,16 +134,19 @@ public class HelloController implements Initializable {
         paneImport.setVisible(false);
         selectedTree = null;
         selected = false;
-        tables.add(new BPTree("ali"));
-        tables.add(new BPTree("food"));
-        tables.add(new BPTree("student"));
         for (BPTree tree : tables) {
             showTree(tree);
         }
     }
-
-    private Boolean selected = false;
-
+//    list of our table
+    private List<BPTree> tables = new ArrayList<>();
+    //    the selected table
+    private Boolean selected = false ;
+    private static BPTree selectedTree ;
+    public static BPTree getSelectedTree() {
+        return selectedTree;
+    }
+    // No two name of tables should be the same
     private Boolean checkName(String name) {
         for (BPTree bpTree : tables) {
             if (bpTree.getName().equals(name)) {
@@ -168,8 +155,23 @@ public class HelloController implements Initializable {
         }
         return true;
     }
-
-    //    نمایش مربع های حاوی اطلاعات درخت در صفحه برای انتخاب
+//    make a table
+    private void makeTable () {
+        if (!nameField.getText().equals("")) {
+            if (checkName(nameField.getText())) {
+                BPTree tree = new BPTree(nameField.getText());
+                tables.add(tree);
+                showTree(tree);
+                paneImport.setVisible(false);
+                nameField.setText("");
+            } else {
+                infoText.setText("input is Repetitious");
+            }
+        } else {
+            infoText.setText("input is not ok");
+        }
+    }
+//    show the threes
     public void showTree(BPTree tree) {
         Pane temp = new Pane();
         temp.setPrefWidth(115);
@@ -209,17 +211,5 @@ public class HelloController implements Initializable {
             imageView.setScaleX(1);
             imageView.setScaleY(1);
         });
-    }
-
-    private static BPTree selectedTree;
-
-    public static BPTree getSelectedTree() {
-        return selectedTree;
-    }
-
-    List<BPTree> tables = new ArrayList<>();
-
-    public static BPTree getTree() {
-        return selectedTree;
     }
 }

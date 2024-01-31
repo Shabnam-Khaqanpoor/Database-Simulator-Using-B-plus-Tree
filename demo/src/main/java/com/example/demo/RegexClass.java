@@ -10,9 +10,9 @@ public abstract class RegexClass {
     }
 
     public static boolean checkDouble(String input) {
-        String regex = " \"^[0-9]+\\.?[0-9]*$\"";
-        boolean t1 = Pattern.matches(regex, input);
-        return t1;
+        String regex = "^[0-9]+\\.?[0-9]*$";
+        boolean t = Pattern.matches(regex, input);
+        return t;
     }
 
     public static boolean checkDate(String input) {

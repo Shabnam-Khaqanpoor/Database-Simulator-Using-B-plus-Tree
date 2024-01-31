@@ -26,7 +26,7 @@
       </ImageView>
       <Pane fx:id="paneImport" layoutX="268.0" layoutY="23.0" prefHeight="145.0" prefWidth="237.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
          <children>
-            <TextField fx:id="nameField" layoutX="31.0" layoutY="60.0" onAction="#okClicked" onKeyPressed="#okClicked" prefHeight="25.0" prefWidth="174.0" promptText="name" />
+            <TextField fx:id="nameField" layoutX="31.0" layoutY="60.0" onAction="#enterPressed" prefHeight="25.0" prefWidth="174.0" promptText="name" />
             <ImageView fx:id="okButton" fitHeight="36.0" fitWidth="36.0" layoutX="63.0" layoutY="96.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@check-mark.png" />
