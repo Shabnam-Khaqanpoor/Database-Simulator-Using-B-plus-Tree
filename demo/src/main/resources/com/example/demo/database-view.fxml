@@ -75,14 +75,14 @@
                </children></Pane>
          </children>
       </Pane>
-      <Pane fx:id="paneImport1" layoutX="1064.0" layoutY="513.0" opacity="0.82" prefHeight="121.0" prefWidth="250.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
+      <Pane fx:id="paneDelete" layoutX="1064.0" layoutY="513.0" opacity="0.82" prefHeight="121.0" prefWidth="250.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
          <children>
-            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="134.0" layoutY="58.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="okDelete" fitHeight="36.0" fitWidth="36.0" layoutX="134.0" layoutY="58.0" onMouseClicked="#okDeleteClicked" onMouseEntered="#okDeleteEntered" onMouseExited="#okDeleteExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@check-mark.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="194.0" layoutY="63.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cancelDelete" fitHeight="25.0" fitWidth="28.0" layoutX="194.0" layoutY="63.0" onMouseClicked="#cancelDeleteClicked" onMouseEntered="#cancelDeleteEntered" onMouseExited="#cancelDeleteExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@close.png" />
                </image>
@@ -92,50 +92,55 @@
                   <Font name="Sylfaen" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="patternButton111" layoutX="38.0" layoutY="58.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="76.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="delete all">
+            <Button fx:id="okAllDelete" layoutX="38.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#okDeleteAllClicked" prefHeight="36.0" prefWidth="76.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="delete all">
                <font>
                   <Font name="Sylfaen" size="12.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="paneImport" layoutX="1028.0" layoutY="303.0" opacity="0.85" prefHeight="171.0" prefWidth="323.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
+      <Pane fx:id="paneAddColumn" layoutX="1028.0" layoutY="303.0" opacity="0.85" prefHeight="171.0" prefWidth="323.0" style="-fx-background-color: #D1D1CC; -fx-background-radius: 130; -fx-border-color: #000000; -fx-border-radius: 130;">
          <children>
-            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="153.0" layoutY="110.0" onMouseClicked="#okClicked" onMouseEntered="#okEntered" onMouseExited="#okExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="okAddColumn" fitHeight="36.0" fitWidth="36.0" layoutX="153.0" layoutY="110.0" onMouseClicked="#okAddColumnClicked" onMouseEntered="#okAddColumnEntered" onMouseExited="#okAddColumnExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@check-mark.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="28.0" layoutX="214.0" layoutY="116.0" onMouseClicked="#cancelClicked" onMouseEntered="#cancelEntered" onMouseExited="#cancelExited" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cancelAddColumn" fitHeight="25.0" fitWidth="28.0" layoutX="214.0" layoutY="116.0" onMouseClicked="#cancelAddColumnClicked" onMouseEntered="#cancelAddColumnEntered" onMouseExited="#cancelAddColumnExited" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@close.png" />
                </image>
             </ImageView>
-            <TextField layoutX="70.0" layoutY="14.0" onKeyPressed="#okClicked" prefHeight="36.0" prefWidth="184.0" promptText="name of your column...">
+            <TextField fx:id="addColumnField" layoutX="70.0" layoutY="14.0" onKeyPressed="#okClicked" prefHeight="36.0" prefWidth="184.0" promptText="name of your column...">
                <font>
                   <Font name="Sylfaen" size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="patternButton1" layoutX="123.0" layoutY="61.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Number">
+            <Button fx:id="numberPattern" layoutX="123.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#numberClicked" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Number">
                <font>
                   <Font name="Sylfaen" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="patternButton11" layoutX="47.0" layoutY="61.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="String">
+            <Button fx:id="stringPattern" layoutX="47.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#stringClicked" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="String">
                <font>
                   <Font name="Sylfaen" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="patternButton12" layoutX="196.0" layoutY="61.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Date">
+            <Button fx:id="dataPattern" layoutX="196.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#dataClicked" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Date">
                <font>
                   <Font name="Sylfaen" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="patternButton112" layoutX="47.0" layoutY="111.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Unique">
+            <Button fx:id="uniqueButton" layoutX="47.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#uniqueClicked" prefHeight="36.0" prefWidth="60.0" style="-fx-border-radius: 120; -fx-border-color: #000000; -fx-background-radius: 120;" text="Unique">
                <font>
                   <Font name="Sylfaen" size="12.0" />
                </font>
             </Button>
+            <ImageView fx:id="uniqueLight" fitHeight="14.0" fitWidth="17.0" layoutX="115.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@color1.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>

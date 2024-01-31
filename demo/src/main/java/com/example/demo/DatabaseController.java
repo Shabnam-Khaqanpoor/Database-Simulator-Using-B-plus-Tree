@@ -15,14 +15,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class DatabaseController implements Initializable {
     //    شکال و ابزارک هایی که در صفحه هستند
@@ -30,6 +28,8 @@ public class DatabaseController implements Initializable {
     private AnchorPane pane;
     @FXML
     private Text databaseName;
+    @FXML
+    private Button patternButton;
     @FXML
     private ImageView close;
     @FXML
@@ -75,11 +75,12 @@ public class DatabaseController implements Initializable {
         close.setScaleX(1);
         close.setScaleY(1);
     }
-
+//    توابع ایکون دیلیت
     @FXML
     void deleteClicked(MouseEvent event) {
-        if (selectedCell != null) {
-            easyDelete();
+        if (selectedCell != null && !onWorking) {
+            paneDelete.setVisible(true);
+            onWorking = true ;
         }
     }
 
@@ -138,7 +139,6 @@ public class DatabaseController implements Initializable {
         edite.setScaleY(1);
     }
 
-    //سرچ کردن
 //    توابع ایکون سرچ
     @FXML
     void searchClicked(MouseEvent event) {
@@ -212,83 +212,8 @@ public class DatabaseController implements Initializable {
     @FXML
     void addColumnClicked(MouseEvent event) {
         if (!onWorking) {
-            onWorking = true;
-            Pane temp = new Pane();
-            temp.setPrefWidth(300);
-            temp.setPrefHeight(200);
-            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color1.png").toString()));
-            imageView.setFitWidth(300);
-            imageView.setFitHeight(200);
-            imageView.setOpacity(0.4);
-            temp.getChildren().add(imageView);
-//        textFields
-            TextField columnName = new TextField();
-            columnName.setPrefWidth(150);
-            columnName.setPrefHeight(40);
-            temp.getChildren().add(columnName);
-            columnName.setLayoutX(140);
-            columnName.setLayoutY(20);
-            TextField columnType = new TextField();
-            columnType.setPrefWidth(75);
-            columnType.setPrefHeight(40);
-            temp.getChildren().add(columnType);
-            columnType.setLayoutX(30);
-            columnType.setLayoutY(20);
-            Text keyName = new Text("name of your column");
-            temp.getChildren().add(keyName);
-            keyName.setLayoutX(20);
-            keyName.setLayoutY(20);
-//
-            Button send = new Button("send");
-            send.setStyle(patternButton.getStyle());
-            send.setPrefWidth(50);
-            send.setPrefHeight(20);
-            temp.getChildren().add(send);
-            send.setLayoutX(200);
-            send.setLayoutY(100);
-            Button cancel = new Button("cancel");
-            cancel.setStyle(patternButton.getStyle());
-            cancel.setPrefWidth(50);
-            cancel.setPrefHeight(20);
-            temp.getChildren().add(cancel);
-            cancel.setLayoutX(50);
-            cancel.setLayoutY(100);
-            pane.getChildren().add(temp);
-            temp.setLayoutX(500);
-            temp.setLayoutY(200);
-            send.setOnMouseClicked(event1 -> {
-                String name = columnName.getText();
-                if (!name.equals("")) {
-                    Type type = RegexClass.gettype(columnType.getText());
-                    if (type != null) {
-                        bpTree.addColumnName(name, type);
-                        showRowBar(name);
-                        for (int i = 0; i < bpTree.getSize(); i++) {
-                            Cell cell = new Cell(bpTree.traverse().get(i), "", bpTree.getColumnNames().size());
-                            table.getChildren().add(cell);
-                            cell.setPrefWidth(90);
-                            cell.setPrefHeight(40);
-                            cell.setLayoutX(bpTree.getColumnNames().indexOf(name) * 95 + 90);
-                            cell.setLayoutY(40 + i * 45);
-                            cell.setStyle(patternButton.getStyle());
-                            cells.add(cell);
-                            bpTree.getPacks().get(i).addMax();
-                            bpTree.getPacks().get(i).addValue(" ");
-                            cell.setOnMouseClicked(event2 -> {
-                                selectedCell = cell;
-                            });
-                        }
-                        onWorking = false;
-                        temp.setVisible(false);
-                    } else {
-                        keyName.setText("your type is not correct");
-                    }
-                }
-            });
-            cancel.setOnMouseClicked(event1 -> {
-                temp.setVisible(false);
-                onWorking = false;
-            });
+            paneAddColumn.setVisible(true);
+            onWorking = true ;
         }
     }
 
@@ -422,12 +347,181 @@ public class DatabaseController implements Initializable {
         addRow.setScaleX(1);
         addRow.setScaleY(1);
     }
+//    صفحات مربوط به حذف ایتم و اضاضفه کردن ستون
 
+    @FXML
+    private Pane paneAddColumn;
+    @FXML
+    private TextField addColumnField;
+    @FXML
+    private ImageView okAddColumn;
+    @FXML
+    private ImageView cancelAddColumn;
+    private Type newColumnType = null ;
+    private boolean unique = false ;
+    @FXML
+    private Button dataPattern;
+    @FXML
+    private Button numberPattern;
+    @FXML
+    private Button stringPattern;
+    @FXML
+    private Button uniqueButton;
+    @FXML
+    private ImageView uniqueLight;
+    @FXML
+    private Pane paneDelete;
+    @FXML
+    private Button okAllDelete;
+    @FXML
+    private ImageView okDelete;
+    @FXML
+    private ImageView cancelDelete;
+    @FXML
+    void okAddColumnClicked(MouseEvent event) {
+        String name = addColumnField.getText();
+        if (!name.equals("")) {
+            if (newColumnType != null) {
+                bpTree.addColumnName(name, newColumnType , unique);
+                showRowBar(name);
+                for (int i = 0; i < bpTree.getSize(); i++) {
+                    Cell cell = new Cell(bpTree.traverse().get(i), "", bpTree.getColumnNames().size()-1);
+                    table.getChildren().add(cell);
+                    cell.setPrefWidth(90);
+                    cell.setPrefHeight(40);
+                    cell.setLayoutX(bpTree.getColumnNames().indexOf(name) * 95 + 90);
+                    cell.setLayoutY(40 + i * 45);
+                    cell.setStyle(patternButton.getStyle());
+                    cells.add(cell);
+                    bpTree.getPacks().get(i).addMax();
+                    bpTree.getPacks().get(i).addValue(" ");
+                    cell.setOnMouseClicked(event2 -> {
+                        selectedCell = cell;
+                    });
+                }
+                onWorking = false;
+                paneAddColumn.setVisible(false);
+            }
+        }
+    }
+
+    @FXML
+    void okAddColumnEntered(MouseEvent event) {
+        okAddColumn.setScaleX(1.1);
+        okAddColumn.setScaleY(1.1);
+    }
+
+    @FXML
+    void okAddColumnExited(MouseEvent event) {
+        okAddColumn.setScaleX(1);
+        okAddColumn.setScaleY(1);
+    }
+    @FXML
+    void cancelAddColumnClicked(MouseEvent event) {
+        addColumnField.setText("");
+        onWorking = false ;
+        paneAddColumn.setVisible(false);
+    }
+    @FXML
+    void cancelAddColumnEntered(MouseEvent event) {
+        cancelAddColumn.setScaleX(1.1);
+        cancelAddColumn.setScaleY(1.1);
+    }
+    @FXML
+    void cancelAddColumnExited(MouseEvent event) {
+        cancelAddColumn.setScaleX(1);
+        cancelAddColumn.setScaleY(1);
+    }
+    @FXML
+    void dataClicked(MouseEvent event) {
+        newColumnType = Type.dateT ;
+    }
+    @FXML
+    void numberClicked(MouseEvent event) {
+        newColumnType = Type.doubleT ;
+    }
+
+    @FXML
+    void stringClicked(MouseEvent event) {
+        newColumnType = Type.stringT ;
+    }
+
+    @FXML
+    void uniqueClicked(MouseEvent event) {
+        unique = !unique ;
+        uniqueLight.setVisible(unique);
+    }
+//    delete on new pane
+    @FXML
+    void okDeleteAllClicked(MouseEvent event) {
+        String key = (String) selectedCell.getKey();
+        List<Cell> del = new ArrayList<>();
+        for (Cell cell : cells) {
+            if (cell.getKey().equals(key)) {
+                del.add(cell);
+            }
+            table.getChildren().remove(cell);
+        }
+        for (Cell cell : del) {
+            cells.remove(cell);
+        }
+        bpTree.delete((String) selectedCell.getKey());
+        selectedCell = null;
+        onWorking = false;
+        paneDelete.setVisible(false);
+
+        column.getChildren().clear();     //remove all IDs
+
+        for (int i = 0; i < bpTree.getSize(); i++) {    //show items after deleting a row
+            String key1 = bpTree.traverse().get(i);
+            showCellsRow(key1, bpTree.search(key1), i);
+        }
+    }
+    @FXML
+    void okDeleteClicked(MouseEvent event) {
+        String key = (String) selectedCell.getKey();
+        selectedCell.setText("");
+        bpTree.search(key).values.remove(selectedCell.getColum()) ;
+        selectedCell = null;
+        onWorking = false;
+        paneDelete.setVisible(false);
+    }
+    @FXML
+    void okDeleteEntered(MouseEvent event) {
+        okDelete.setScaleX(1.1);
+        okDelete.setScaleY(1.1);
+    }
+    @FXML
+    void okDeleteExited(MouseEvent event) {
+        okDelete.setScaleX(1);
+        okDelete.setScaleY(1);
+    }
+
+    @FXML
+    void cancelDeleteClicked(MouseEvent event) {
+        paneDelete.setVisible(false);
+        selectedCell = null ;
+        onWorking = false ;
+    }
+
+    @FXML
+    void cancelDeleteEntered(MouseEvent event) {
+        cancelDelete.setScaleX(1.1);
+        cancelDelete.setScaleY(1.1);
+    }
+
+    @FXML
+    void cancelDeleteExited(MouseEvent event) {
+        cancelDelete.setScaleX(1);
+        cancelDelete.setScaleY(1);
+    }
 
     //    ----------------------------------
     //    چاپ مقادیر اولیه درخت
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        paneAddColumn.setVisible(false);
+        paneDelete.setVisible(false);
         bpTree = HelloApplication.getTree();
         for (String column : bpTree.getColumnNames()) {
             showRowBar(column);
@@ -437,6 +531,8 @@ public class DatabaseController implements Initializable {
 
     //درخت بی تری مرتبط با این دیتا بیس
     private static BPTree<String, Pack> bpTree;
+    //در صورت انتخاب یک سل ان به حالت سلکت شده در می اید
+    private Cell selectedCell;
     //    لیست سل ها یا همان تکست ها
     private List<Cell> cells = new ArrayList<>();
 
@@ -447,9 +543,6 @@ public class DatabaseController implements Initializable {
             showCellsRow(key, pack, n);
         }
     }
-
-    @FXML
-    private Button patternButton;
 
     public void showRowBar(String column) {
         Button button = new Button(column);
@@ -482,64 +575,6 @@ public class DatabaseController implements Initializable {
             cell.setStyle(patternButton.getStyle());
             cell.setOnMouseClicked(event -> {
                 selectedCell = cell;
-            });
-        }
-    }
-
-    //در صورت انتخاب یک سل ان به حالت سلکت شده در می اید
-    private Cell selectedCell;
-
-    //    مربوط به فرایند حذف که باگ داشت
-    private void easyDelete() {
-        if (!onWorking) {
-            onWorking = true;
-            Pane temp = new Pane();
-            pane.getChildren().add(temp);
-            temp.setPrefWidth(250);
-            temp.setPrefHeight(150);
-            temp.setLayoutX(800);
-            temp.setLayoutY(300);
-            Button buttonAll = new Button("delete all");
-            temp.getChildren().add(buttonAll);
-            buttonAll.setPrefWidth(60);
-            buttonAll.setPrefHeight(20);
-            buttonAll.setLayoutX(165);
-            buttonAll.setLayoutY(115);
-            Button buttonCancel = new Button("cancel");
-            temp.getChildren().add(buttonCancel);
-            buttonCancel.setPrefWidth(60);
-            buttonCancel.setPrefHeight(20);
-            buttonCancel.setLayoutX(35);
-            buttonCancel.setLayoutY(115);
-            buttonAll.setOnMouseClicked(event -> {
-                String key = (String) selectedCell.getKey();
-                List<Cell> del = new ArrayList<>();
-                for (Cell cell : cells) {
-                    if (cell.getKey().equals(key)) {
-                        del.add(cell);
-                    }
-                    table.getChildren().remove(cell);
-                }
-                for (Cell cell : del) {
-                    cells.remove(cell);
-                }
-                bpTree.delete((String) selectedCell.getKey());
-                selectedCell = null;
-                onWorking = false;
-                temp.setVisible(false);
-
-                column.getChildren().clear();     //remove all IDs
-
-                for (int i = 0; i < bpTree.getSize(); i++) {    //show items after deleting a row
-                    String key1 = bpTree.traverse().get(i);
-                    showCellsRow(key1, bpTree.search(key1), i);
-                }
-
-            });
-            buttonCancel.setOnMouseClicked(event -> {
-                pane.getChildren().remove(temp);
-                selectedCell = null;
-                onWorking = false;
             });
         }
     }

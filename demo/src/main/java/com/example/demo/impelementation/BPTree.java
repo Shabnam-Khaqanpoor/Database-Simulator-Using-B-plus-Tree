@@ -20,18 +20,29 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public String getColumn (int n) {
         return columnNames.get(n) ;
     }
-    public void addColumnName (String name , Type type) {
+    public void addColumnName (String name , Type type , boolean unique) {
         columnNames.add(name);
         types.add(type);
+        uniques.add(unique);
     }
-    private List <Type> types = new ArrayList<>() ;
 
+    private List <Type> types = new ArrayList<>() ;
     public Type getType(int n) {
         return types.get(n);
     }
     public List<Type> getTypes() {
         return types;
     }
+
+    private List <Boolean> uniques = new ArrayList<>() ;
+    public Boolean getUnique(int n) {
+        return uniques.get(n);
+    }
+    public List<Boolean> getUniques() {
+        return uniques;
+    }
+
+//    ----------------------------
 
     private List<TValue> packs = new ArrayList<>() ;
     public List<TValue> getPacks() {
