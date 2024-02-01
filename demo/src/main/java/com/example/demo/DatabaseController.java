@@ -571,63 +571,6 @@ public class DatabaseController implements Initializable {
             }
         }
     }
-    public void showSearchResult () {
-        String word = fieldText.getText();
-        if (!word.equals("") && !onWorking) {
-            int n = bpTree.getColumnNames().size();
-//            make a pane
-            Pane temp = new Pane();
-            temp.setPrefWidth(n * 100 + 100);
-            temp.setPrefHeight(80);
-            pane.getChildren().add(temp);
-            temp.setLayoutX(300);
-            temp.setLayoutY(200);
-            ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color2.png").toString()));
-            imageView.setFitWidth(n * 100 + 100);
-            imageView.setFitHeight(80);
-            imageView.setOpacity(0.4);
-            temp.getChildren().add(imageView);
-            Pack pack = bpTree.search(word);
-//           find the answer and show
-            if (pack != null) {
-                for (int i = 0; i < n; i++) {
-                    Button button = new Button(pack.values.get(i).toString());
-                    button.setPrefWidth(90);
-                    button.setPrefHeight(40);
-                    temp.getChildren().add(button);
-                    button.setLayoutX(20 + i * 100);
-                    button.setLayoutY(20);
-                }
-            } else {
-                Text textError = new Text("not Found");
-                textError.setTabSize(20);
-                temp.getChildren().add(textError);
-                textError.setLayoutX(30);
-                textError.setLayoutY(40);
-                temp.setLayoutX(500);
-                temp.setLayoutY(200);
-            }
-            ImageView closeIcon = new ImageView(new Image(HelloApplication.class.getResource("close.png").toString()));
-            closeIcon.setFitWidth(40);
-            closeIcon.setFitHeight(40);
-            temp.getChildren().add(closeIcon);
-            closeIcon.setLayoutX(n * 100 + 30);
-            closeIcon.setLayoutY(20);
-            closeIcon.setOnMouseClicked(event1 -> {
-                onWorking = false;
-                temp.setVisible(false);
-                fieldText.setText("");
-            });
-            closeIcon.setOnMouseEntered(event1 -> {
-                closeIcon.setScaleX(1.1);
-                closeIcon.setScaleY(1.1);
-            });
-            closeIcon.setOnMouseExited(event1 -> {
-                closeIcon.setScaleX(1);
-                closeIcon.setScaleY(1);
-            });
-        }
-    }
     public void showEditeResult () {
         String word = editeField.getText() ;
         if (!word.equals("")) {
@@ -664,5 +607,136 @@ public class DatabaseController implements Initializable {
                 onWorking = false ;
             }
         }
+    }
+    public void showSearchResult () {
+        String word = fieldText.getText();
+        boolean normalSearch = true ;
+        int k = 0 ;
+        if (!word.equals("") && !onWorking) {
+            for (String temp : bpTree.getColumnNames()) {
+                if (word.equals(temp)) {
+                    k = bpTree.getColumnNames().indexOf(temp) ;
+                    normalSearch = false ;
+                }
+            }
+            if (normalSearch) {
+                normalSearch(word);
+            } else {
+                columnSearch(word , k);
+            }
+        }
+    }
+    public void normalSearch (String word) {
+        int n = bpTree.getColumnNames().size();
+//            make a pane
+        Pane temp = new Pane();
+        temp.setPrefWidth(n * 100 + 100);
+        temp.setPrefHeight(80);
+        pane.getChildren().add(temp);
+        temp.setLayoutX(300);
+        temp.setLayoutY(200);
+        ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color2.png").toString()));
+        imageView.setFitWidth(n * 100 + 100);
+        imageView.setFitHeight(80);
+        imageView.setOpacity(0.4);
+        temp.getChildren().add(imageView);
+        Pack pack = bpTree.search(word);
+//           find the answer and show
+        if (pack != null) {
+            for (int i = 0; i < n; i++) {
+                Button button = new Button(pack.values.get(i).toString());
+                button.setPrefWidth(90);
+                button.setPrefHeight(40);
+                temp.getChildren().add(button);
+                button.setLayoutX(20 + i * 100);
+                button.setLayoutY(20);
+            }
+        } else {
+            Text textError = new Text("not Found");
+            textError.setTabSize(20);
+            temp.getChildren().add(textError);
+            textError.setLayoutX(30);
+            textError.setLayoutY(40);
+            temp.setLayoutX(500);
+            temp.setLayoutY(200);
+        }
+        ImageView closeIcon = new ImageView(new Image(HelloApplication.class.getResource("close.png").toString()));
+        closeIcon.setFitWidth(40);
+        closeIcon.setFitHeight(40);
+        temp.getChildren().add(closeIcon);
+        closeIcon.setLayoutX(n * 100 + 30);
+        closeIcon.setLayoutY(20);
+        closeIcon.setOnMouseClicked(event1 -> {
+            onWorking = false;
+            temp.setVisible(false);
+            fieldText.setText("");
+        });
+        closeIcon.setOnMouseEntered(event1 -> {
+            closeIcon.setScaleX(1.1);
+            closeIcon.setScaleY(1.1);
+        });
+        closeIcon.setOnMouseExited(event1 -> {
+            closeIcon.setScaleX(1);
+            closeIcon.setScaleY(1);
+        });
+    }
+    public void columnSearch (String word , int k) {
+        int n = bpTree.getSize();
+//            make a pane
+        Pane temp = new Pane();
+        temp.setPrefWidth(100);
+        temp.setPrefHeight(n * 50 + 40);
+        pane.getChildren().add(temp);
+        temp.setLayoutX(500);
+        temp.setLayoutY(100);
+        ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color2.png").toString()));
+        imageView.setFitWidth(100);
+        imageView.setFitHeight(n * 50 + 100);
+        imageView.setOpacity(0.4);
+        temp.getChildren().add(imageView);
+        List <String> result = new ArrayList<>() ;
+        for (String key : bpTree.traverse()) {
+            Pack pack = bpTree.search(key) ;
+            Object ob = pack.values.get(k) ;
+            result.add((String) ob);
+        }
+//           find the answer and show
+        if (n != 0) {
+            for (int i = 0; i < n; i++) {
+                Button button = new Button(result.get(i).toString());
+                button.setPrefWidth(90);
+                button.setPrefHeight(40);
+                temp.getChildren().add(button);
+                button.setLayoutX(5);
+                button.setLayoutY(65 + i * 50);
+            }
+        } else {
+            Text textError = new Text("not Found");
+            textError.setTabSize(20);
+            temp.getChildren().add(textError);
+            textError.setLayoutX(30);
+            textError.setLayoutY(10);
+            temp.setLayoutX(500);
+            temp.setLayoutY(200);
+        }
+        ImageView closeIcon = new ImageView(new Image(HelloApplication.class.getResource("close.png").toString()));
+        closeIcon.setFitWidth(40);
+        closeIcon.setFitHeight(40);
+        temp.getChildren().add(closeIcon);
+        closeIcon.setLayoutX(25);
+        closeIcon.setLayoutY(20);
+        closeIcon.setOnMouseClicked(event1 -> {
+            onWorking = false;
+            temp.setVisible(false);
+            fieldText.setText("");
+        });
+        closeIcon.setOnMouseEntered(event1 -> {
+            closeIcon.setScaleX(1.1);
+            closeIcon.setScaleY(1.1);
+        });
+        closeIcon.setOnMouseExited(event1 -> {
+            closeIcon.setScaleX(1);
+            closeIcon.setScaleY(1);
+        });
     }
 }

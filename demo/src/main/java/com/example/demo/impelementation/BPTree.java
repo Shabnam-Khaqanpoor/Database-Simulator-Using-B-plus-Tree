@@ -33,7 +33,6 @@ public class BPTree<TKey extends Comparable<TKey>, TValue> {
     public List<Type> getTypes() {
         return types;
     }
-
     private List <Boolean> uniques = new ArrayList<>() ;
     public Boolean getUnique(int n) {
         return uniques.get(n);
