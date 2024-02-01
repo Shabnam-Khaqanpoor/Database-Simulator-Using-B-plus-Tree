@@ -139,7 +139,7 @@ public class HelloController implements Initializable {
         }
     }
 //    list of our table
-    private List<BPTree> tables = new ArrayList<>();
+    private static List<BPTree> tables = new ArrayList<>() ;
     //    the selected table
     private Boolean selected = false ;
     private static BPTree selectedTree ;

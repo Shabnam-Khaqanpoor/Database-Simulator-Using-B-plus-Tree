@@ -708,13 +708,13 @@ public class DatabaseController implements Initializable {
                 button.setPrefHeight(40);
                 temp.getChildren().add(button);
                 button.setLayoutX(5);
-                button.setLayoutY(65 + i * 50);
+                button.setLayoutY(75 + i * 50);
             }
         } else {
             Text textError = new Text("not Found");
             textError.setTabSize(20);
             temp.getChildren().add(textError);
-            textError.setLayoutX(30);
+            textError.setLayoutX(35);
             textError.setLayoutY(10);
             temp.setLayoutX(500);
             temp.setLayoutY(200);
