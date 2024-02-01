@@ -110,14 +110,14 @@ public class DatabaseController implements Initializable {
 //    search
     @FXML
     void searchEnterPressed(ActionEvent event) {
-        if (!onWorking) {
+        if (!onWorking && bpTree.getColumnNames().size() > 0) {
             showSearchResult();
             onWorking = true ;
         }
     }
     @FXML
     void searchClicked(MouseEvent event) {
-        if (!onWorking) {
+        if (!onWorking && bpTree.getColumnNames().size() > 0) {
             showSearchResult();
             onWorking = true ;
         }
@@ -557,7 +557,7 @@ public class DatabaseController implements Initializable {
                     cell.setStyle(patternButton.getStyle());
                     cells.add(cell);
                     bpTree.getPacks().get(i).addMax();
-                    bpTree.getPacks().get(i).addValue(" ");
+                    bpTree.getPacks().get(i).addValue("");
                     cell.setOnMouseClicked(event2 -> {
                         selectedCell = cell;
                     });
@@ -580,7 +580,7 @@ public class DatabaseController implements Initializable {
             temp.setPrefWidth(n * 100 + 100);
             temp.setPrefHeight(80);
             pane.getChildren().add(temp);
-            temp.setLayoutX(500);
+            temp.setLayoutX(300);
             temp.setLayoutY(200);
             ImageView imageView = new ImageView(new Image(HelloApplication.class.getResource("color2.png").toString()));
             imageView.setFitWidth(n * 100 + 100);
@@ -602,6 +602,8 @@ public class DatabaseController implements Initializable {
                 Text textError = new Text("not Found");
                 textError.setTabSize(20);
                 temp.getChildren().add(textError);
+                textError.setLayoutX(30);
+                textError.setLayoutY(40);
                 temp.setLayoutX(500);
                 temp.setLayoutY(200);
             }
@@ -609,7 +611,7 @@ public class DatabaseController implements Initializable {
             closeIcon.setFitWidth(40);
             closeIcon.setFitHeight(40);
             temp.getChildren().add(closeIcon);
-            closeIcon.setLayoutX(n * 100 + 40);
+            closeIcon.setLayoutX(n * 100 + 30);
             closeIcon.setLayoutY(20);
             closeIcon.setOnMouseClicked(event1 -> {
                 onWorking = false;

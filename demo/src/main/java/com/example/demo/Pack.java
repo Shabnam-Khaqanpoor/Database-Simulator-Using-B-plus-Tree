@@ -15,9 +15,13 @@ public class Pack implements Comparable {
         }
     }
     public void deleteValue (int n) {
+        Object old = values.get(n) ;
+        values.remove(old) ;
         values.add(n , "");
     }
     public void editeValue (int n , Object ob) {
+        Object old = values.get(n) ;
+        values.remove(old) ;
         values.add(n , ob);
     }
     @Override
